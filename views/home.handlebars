@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <title>Beach Nourishment</title>
+</head>
+<body>
+    <img src="/images/IndexMap.gif" alt="us-map" usemap="#us_map"
+        ismap="ismap" style="border: 5px solid #80c2d0; 
+        border-radius: 5px; 
+        margin-left: -7px;"/>
+    
+    <!--<select onchange="if (this.value) window.location.href=this.value, '_top'">-->
+    <select id="mySelect" onchange="myFunction()">    
+        <option value=".">Select a state</option>
+        <option value="/oneState?state=AL">AL</option>
+        <option value="/oneState?state=CA">CA</option>
+        <option value="/oneState?state=CT">CT</option>
+        <option value="/oneState?state=DE">DE</option>
+        <option value="/oneState?state=FL">FL</option>
+        <option value="/oneState?state=GA">GA</option>
+        <option value="/oneState?state=LA">LA</option>
+        <option value="/oneState?state=MA">MA</option>
+        <option value="/oneState?state=MD">MD</option>
+        <option value="/oneState?state=ME">ME</option>
+        <option value="/oneState?state=MS">MS</option>
+        <option value="/oneState?state=NC">NC</option>
+        <option value="/oneState?state=NJ">NJ</option>
+        <option value="/oneState?state=NH">NH</option>
+        <option value="/oneState?state=NY">NY</option>
+        <option value="/oneState?state=RI">RI</option>
+        <option value="/oneState?state=SC">SC</option>
+        <option value="/oneState?state=TX">TX</option>
+        <option value="/oneState?state=VA">VA</option>
+        <option value="/oneState?state=WA">WA</option>
+   </select>
+	
+    <map name="us_map">
+
+              <area shape="poly" 
+                    coords="616,262, 610,314, 612,340, 626,337, 628,332, 626,330, 624,327, 664,326, 667,395, 657,262, 616,262"
+                    title="Alabama" href="/oneState?state=AL" />
+
+              <area shape="poly" 
+                    coords="23,148, 20,174, 84,270, 137,302, 184,297, 188,272, 92,195, 93,148, 23,148"
+                    title="California" href="/oneState?state=CA" />
+
+              <area shape="poly" 
+                    coords="856,147, 855,161, 880,162, 884,147, 856,147"
+                    title="Connecticut" href="/oneState?state=CT" />
+
+              <area shape="poly" 
+                    coords="818,184, 819,203, 834,203, 823,189, 823,182, 820,182, 818,184"
+                    title="Delaware" href="/oneState?state=DE" />
+
+              <area shape="poly" 
+                    coords="624,327, 624,329, 627,333, 630,341, 650,341, 660,350, 670,350, 683,341, 703,361, 699,372, 717,435, 742,429, 751,413, 752,391, 728,330, 716,329, 716,336, 713,337, 712,333, 669,331, 667,326, 624,327"
+                    title="Florida" href="/oneState?state=FL" />
+              
+              <area shape="poly" 
+                    coords="657,261, 668,306, 667,326, 669,331, 712,333, 713,337, 716,336, 716,330, 729,327, 730,303, 694,266, 698,261, 657,261"
+                    title="Georgia" href="/oneState?state=GA" />
+              
+              <area shape="poly" 
+                    coords="519,293, 518,310, 527,325, 522,348, 555,352, 571,362, 601,358, 593,351, 599,343, 588,332, 589,326, 559,326, 570,306, 595,293, 519,293"
+                    title="Louisiana" href="/oneState?state=LA" />
+              
+              <area shape="poly" 
+                    coords="860,134, 856,146, 890,146, 898,160, 915,160, 917,149, 906,146, 906,134, 860,134"
+                    title="Massachusetts" href="/oneState?state=MA" />
+              <area shape="poly" 
+                    coords="758,184, 758,192, 781,185, 799,198, 792,206, 808,209, 815,227, 833,208, 819,204, 817,184, 758,184"
+                    title="Maryland" href="/oneState?state=MD" />
+              
+              <area shape="poly" 
+                    coords="897,93, 898,125, 905,128, 912,120, 963,101, 950,86, 950,64, 930,61, 926,57, 897,93"
+                    title="Maine" href="/oneState?state=ME" />
+              
+              <area shape="poly" 
+                    coords="582,261, 567,285, 571,305, 558,326, 588,327, 588,332, 592,340, 610,339, 615,262, 582,261"
+                    title="Mississippi" href="/oneState?state=MS" />
+
+              <area shape="poly" 
+                    coords="722,236, 678,260, 698,260, 709,258, 732,258, 737,263, 755,264, 774,283, 826,259, 818,237, 722,236"
+                    title="North Carolina" href="/oneState?state=NC" />
+              
+              <area shape="poly" 
+                    coords="835,157, 829,164, 829,170, 834,175, 823,184, 833,199, 851,174, 848,164, 835,157"
+                    title="New Jersey" href="/oneState?state=NJ" />
+              
+              <area shape="poly" 
+                    coords="891,93, 880,108, 872,134, 892,135, 897,131, 895,94, 891,93"
+                    title="New Hampshire" href="/oneState?state=NH" />
+
+              <area shape="poly" 
+                    coords="753,146, 825,147, 853,165, 859,135, 858,97, 834,97, 809,112, 811,122, 765,126, 768,133, 753,142, 753,146"
+                    title="New York" href="/oneState?state=NY" />
+              
+              <area shape="poly" 
+                    coords="884,147, 885,162, 894,157, 890,148, 884,147"
+                    title="Rhode Island" href="/oneState?state=RI" />
+
+              <area shape="poly" 
+                    coords="695,266, 702,296, 726,301, 731,311, 771,281, 755,265, 736,264, 732,259, 708,258, 695,266"
+                    title="South Carolina" href="/oneState?state=SC" />
+              
+              <area shape="poly" 
+                    coords="371,237, 370,310, 312,311, 340,334, 366,360, 378,347, 397,347, 435,401, 467,411, 465,385, 521,348, 519,285, 421,267, 420,236, 371,237"
+                    title="Texas" href="/oneState?state=TX" />
+              
+              <area shape="poly" 
+                    coords="689,235, 814,235, 810,215, 793,206, 796,198, 775,189, 743,219, 719,225, 716,220, 689,235"
+                    title="Virginia" href="/oneState?state=VA" />
+              
+              <area shape="poly" 
+                    coords="16,44, 27,78, 45,80, 46,87, 142,81, 141,33, 47,32, 16,44"
+                    title="Washington" href="/oneState?state=WA" />
+            </map>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "newbeach",
+  "version": "0.0.0",
+  "description": "This is the new version of the beach nourishment website in which will use  JavaScript and Node and Express",
+  "main": "beach.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tommy Ho and Paul Raiche",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express3-handlebars": "^0.5.2"
+  },
+  "devDependencies": {}
+}
