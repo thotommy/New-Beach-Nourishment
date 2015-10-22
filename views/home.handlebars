@@ -4,38 +4,45 @@
     <title>Beach Nourishment</title>
 </head>
 <body>
-    <img src="/images/IndexMap.gif" alt="us-map" usemap="#us_map"
+  <table>
+    <tr>
+      <td>
+        <select onchange="if (this.value) window.location.href=this.value, '_top'">
+          <option value=".">Select a state</option>
+          <option value="/oneState?state=AL">AL</option>
+          <option value="/oneState?state=CA">CA</option>
+          <option value="/oneState?state=CT">CT</option>
+          <option value="/oneState?state=DE">DE</option>
+          <option value="/oneState?state=FL">FL</option>
+          <option value="/oneState?state=GA">GA</option>
+          <option value="/oneState?state=LA">LA</option>
+          <option value="/oneState?state=MA">MA</option>
+          <option value="/oneState?state=MD">MD</option>
+          <option value="/oneState?state=ME">ME</option>
+          <option value="/oneState?state=MS">MS</option>
+          <option value="/oneState?state=NC">NC</option>
+          <option value="/oneState?state=NJ">NJ</option>
+          <option value="/oneState?state=NH">NH</option>
+          <option value="/oneState?state=NY">NY</option>
+          <option value="/oneState?state=RI">RI</option>
+          <option value="/oneState?state=SC">SC</option>
+          <option value="/oneState?state=TX">TX</option>
+          <option value="/oneState?state=VA">VA</option>
+          <option value="/oneState?state=WA">WA</option>
+        </select>
+      </td>
+    </tr> 
+       
+    <tr>  
+      <td> 
+        <img src="/images/IndexMap.gif" alt="us-map" usemap="#us_map"
         ismap="ismap" style="border: 5px solid #80c2d0; 
         border-radius: 5px; 
         margin-left: -7px;"/>
-    
-    <!--<select onchange="if (this.value) window.location.href=this.value, '_top'">-->
-    <select id="mySelect" onchange="myFunction()">    
-        <option value=".">Select a state</option>
-        <option value="/oneState?state=AL">AL</option>
-        <option value="/oneState?state=CA">CA</option>
-        <option value="/oneState?state=CT">CT</option>
-        <option value="/oneState?state=DE">DE</option>
-        <option value="/oneState?state=FL">FL</option>
-        <option value="/oneState?state=GA">GA</option>
-        <option value="/oneState?state=LA">LA</option>
-        <option value="/oneState?state=MA">MA</option>
-        <option value="/oneState?state=MD">MD</option>
-        <option value="/oneState?state=ME">ME</option>
-        <option value="/oneState?state=MS">MS</option>
-        <option value="/oneState?state=NC">NC</option>
-        <option value="/oneState?state=NJ">NJ</option>
-        <option value="/oneState?state=NH">NH</option>
-        <option value="/oneState?state=NY">NY</option>
-        <option value="/oneState?state=RI">RI</option>
-        <option value="/oneState?state=SC">SC</option>
-        <option value="/oneState?state=TX">TX</option>
-        <option value="/oneState?state=VA">VA</option>
-        <option value="/oneState?state=WA">WA</option>
-   </select>
-	
+      </td>
+    </tr>
+  </table>
     <map name="us_map">
-
               <area shape="poly" 
                     coords="616,262, 610,314, 612,340, 626,337, 628,332, 626,330, 624,327, 664,326, 667,395, 657,262, 616,262"
                     title="Alabama" href="/oneState?state=AL" />
