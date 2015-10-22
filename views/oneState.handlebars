@@ -5,8 +5,148 @@
     </head>
     
     <body>
-        BODY OF ONESTATE
-		Paul test
+        <p>BODY OF ONESTATE</p>
+			<p>{{data}}</p>
+		<p>Testing</p>
+		
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1', {'packages':['corechart']});
+
+    google.setOnLoadCallback(initialize);
+
+    /**
+     * The information window that will pop up when a marker is clicked.
+     * There is only one so that only one window can ever be displayed at a
+     * time.
+     */
+    var infoWindow = new google.maps.InfoWindow();
+
+    /**
+     * The array that contains all the markers that are displayed on the map.
+     * They are in this format because, this way, you can simply loop through
+     * the array and add or remove each marker from the map.
+     */
+    var markers    = new Array();
+
+    /**
+     * The function that is called as soon as the Google Visualization library
+     * is loaded.  This function determines what state has been clicked by
+     * recieveing the 'state' variable in the jsp and then creates a query
+     * using the state.
+     */
+	 
+    function initialize() {
+		//alert("In init");
+		document.write("Init");
+        var state = "North Carolina";
+		//document.write({{data}});
+        var query = new google.visualization.Query(createDataUrl("Master"));
+        query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
+                       + "' Order By A");
+        query.send(queryResponse);
+    }
+
+    /**
+     * This function is activated when a query.send function is called with
+     * this function being passed as the parameter. It checks which radio
+     * button has been selected (the Sort by button) and then draws the map
+     * accordingly.
+     *
+     * @param response the query response that is created from the query
+     */
+    function queryResponse(response) {
+        if (response.isError()) {
+            alert("Error in query: " + response.getMessage() + " " +
+                  response.getDetailedMessage());
+			document.write("Error");
+            return;
+        }
+
+        var data = response.getDataTable();
+
+
+        populateBeachesAndTotals(data);
+    }
+	
+	function populateBeachesAndTotals(data) {
+		document.write("In here");
+        var latitudeColumn  = 1;
+        var longitudeColumn = 2;
+        var lengthColumn    = 3;
+        var volumeColumn    = 4;
+        var costColumn      = 5;
+        var cost2010Column  = 6;
+
+        for (var i = 0; i < data.getNumberOfRows(); i++) {
+            var index = trim(data.getValue(i, 0));
+            if (beaches[index] == undefined) {
+                beaches[index] = new Object();
+                beaches[index].beach     = index;
+                beaches[index].episodes  = 1;
+                beaches[index].latitude  = data.getValue(i, 
+                                                         latitudeColumn);
+                beaches[index].longitude = data.getValue(i, 
+                                                         longitudeColumn);
+                beaches[index].cost      = data.getValue(i, costColumn);
+                beaches[index].volume    = data.getValue(i, volumeColumn);
+                beaches[index].len       = data.getValue(i, lengthColumn);
+                beaches[index].cost2010  = data.getValue(i, cost2010Column);
+            } else {
+                beaches[index].episodes++;
+                beaches[index].cost     += data.getValue(i, costColumn);
+                beaches[index].volume   += data.getValue(i, volumeColumn);
+                beaches[index].len      += data.getValue(i, lengthColumn);
+                beaches[index].cost2010 += data.getValue(i, cost2010Column);
+            }
+        }
+
+        jQuery.each(beaches, function() {
+            if (this.episodes < min.episodes) {
+                min.episodes = this.episodes;
+            }
+            if (this.episodes > max.episodes) {
+                max.episodes = this.episodes;
+            }
+            if (this.cost < min.cost) {
+                min.cost = this.cost;
+            }
+            if (this.cost > max.cost) {
+                max.cost = this.cost;
+            }
+            if (this.volume < min.volume) {
+                min.volume = this.volume;
+            }
+            if (this.volume > max.volume) {
+                max.volume = this.volume;
+            }
+            totals.cost     += this.cost;
+            totals.episodes += this.episodes;
+            totals.volume   += this.volume;
+            totals.len      += this.len;
+            totals.cost2010 += this.cost2010;
+        });
+		document.getElementById('total_episodes').value = 
+                                           numberWithCommas(totals.episodes);
+        document.getElementById('total_cost').value = '$' 
+                                           + numberWithCommas(
+                                           Math.round(totals.cost));
+        document.getElementById('total_2010cost').value = '$' 
+                                           + numberWithCommas(
+                                           Math.round(totals.cost2010));
+        document.getElementById('total_volume').value = 
+                                           numberWithCommas(
+                                           Math.round(totals.volume));
+        document.getElementById('total_length').value = 
+                                           numberWithCommas(
+                                           Math.round(totals.len));
+        document.getElementById('totals').style.visibility = 'visible';
+		
+    }
+	</script>
+		
     </body>    
 </html>
 

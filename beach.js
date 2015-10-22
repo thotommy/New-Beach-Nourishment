@@ -25,15 +25,8 @@ app.get('/', function(req,res) {
 
 app.get('/oneState', function(req,res) {
     var state = req.query.state; //get the state from the query string
-    var data = generateOneStateData(state); //this is equivalent of results.php
-    //version with all data to be displayed for the state returned in the object
-    //assisnged to the variable data
-    res.render('oneState', { data:data }); 
-        //The first arugument is the name of the template file in the views
-        //directory that will be the page displaying the information about the
-        //state; that is, the file
-        //views/oneState.handlebars
-    
+    var data = generateOneStateData(state);
+    res.render('oneState', { data: data });     
 });
  
 
@@ -54,6 +47,7 @@ app.listen(app.get('port'), function() {
     console.log('Server starts on http://localhost:' +
                 app.get('port') + '; press Ctrl-C to terminate.');
 });
+
 
 function generateOneStateData(current_state) {
 	var fullStateName = "";
