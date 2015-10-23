@@ -13,7 +13,8 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 /*This line will make all static items in public visible to users*/
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.set('port', process.env.PORT || 3000);
 

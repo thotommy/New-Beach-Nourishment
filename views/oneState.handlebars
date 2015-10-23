@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>{{{Title}}}</title>
+		
     </head>
     
     <body>
@@ -10,6 +11,7 @@
 		<p>Testing</p>
 		
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="javascript/states.js"></script>
     <script type="text/javascript">
 
       // Load the Visualization API and the piechart package.
@@ -42,10 +44,11 @@
 		//alert("In init");
 		document.write("Init");
         var state = "North Carolina";
-		//document.write({{data}});
+		document.write("Set state");
         var query = new google.visualization.Query(createDataUrl("Master"));
         query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
                        + "' Order By A");
+		document.write("Made it");
         query.send(queryResponse);
     }
 
@@ -58,6 +61,7 @@
      * @param response the query response that is created from the query
      */
     function queryResponse(response) {
+		document.write("In response");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                   response.getDetailedMessage());
