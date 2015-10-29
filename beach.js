@@ -1,6 +1,7 @@
 /**
  * This is the main file for the beach nourishment website
  *
+ *
  */
 var express = require('express');
 var app = express();
@@ -22,7 +23,6 @@ app.set('port', process.env.PORT || 3000);
 app.get('/', function(req,res) {
     res.render('home');
 });
-
 
 app.get('/oneState', function(req,res) {
     var state = req.query.state; //get the state from the query string
