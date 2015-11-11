@@ -32,9 +32,9 @@
      */
 	 
     function initialize() {
-		alert("In init");
+		//alert("In init");
 		document.write("Init");
-        var state = "North Carolina";
+        var state = createDownloadUrl();
 		document.write("Set state");
         var query = new google.visualization.Query(createDataUrl("Master"));
         query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
