@@ -32,14 +32,11 @@
      */
 	 
     function initialize() {
-		//alert("In init");
-		document.write("Init");
-        var state = createDownloadUrl();
-		document.write("Set state");
+        //var state = createDownloadUrl();
+		var state = "NC";
         var query = new google.visualization.Query(createDataUrl("Master"));
         query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
                        + "' Order By A");
-		document.write("Made it");
         query.send(queryResponse);
     }
 
@@ -52,22 +49,21 @@
      * @param response the query response that is created from the query
      */
     function queryResponse(response) {
-		document.write("In response");
+		alert("In Callback");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                   response.getDetailedMessage());
-			document.write("Error");
             return;
         }
 
         var data = response.getDataTable();
-
+		alert("Data table received");
 
         populateBeachesAndTotals(data);
     }
 	
 	function populateBeachesAndTotals(data) {
-		document.write("In here");
+		alert("Moving on to populate printable data");
         var latitudeColumn  = 1;
         var longitudeColumn = 2;
         var lengthColumn    = 3;
