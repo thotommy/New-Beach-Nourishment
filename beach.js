@@ -27,7 +27,7 @@ app.get('/', function(req,res) {
 app.get('/oneState', function(req,res) {
     var state = req.query.state; //get the state from the query string
     var data = generateOneStateData(state);
-    res.render('oneState', { data: data });     
+    res.render('oneState', { state: state });     
 });
  
 

@@ -32,8 +32,9 @@
      */
 	 
     function initialize() {
-        //var state = createDownloadUrl();
-		var state = "NC";
+        //var state = creatDownloadUrl();
+		var state = "{{state }}";
+		alert("After->" + state);
         var query = new google.visualization.Query(createDataUrl("Master"));
         query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
                        + "' Order By A");
@@ -57,6 +58,10 @@
         }
 
         var data = response.getDataTable();
+		var cols = data.getNumberOfColumns();
+		var rows = data.getNumberOfRows();
+		alert(cols);
+		alert(rows);
 		alert("Data table received");
 
         populateBeachesAndTotals(data);
