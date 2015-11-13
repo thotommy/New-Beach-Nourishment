@@ -33,8 +33,10 @@
 	 
     function initialize() {
         //var state = creatDownloadUrl();
-		var state = "{{state }}";
-		alert("After->" + state);
+		var state = "{{state}}";
+		var fullStateName = "{{fullStateName}}";
+		//alert("Initials->" + state);
+		//alert("Full name->" + fullStateName);
         var query = new google.visualization.Query(createDataUrl("Master"));
         query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
                        + "' Order By A");
@@ -57,28 +59,53 @@
             return;
         }
 
+		var beaches = new Object();
+		
         var data = response.getDataTable();
 		var cols = data.getNumberOfColumns();
 		var rows = data.getNumberOfRows();
-		alert(cols);
-		alert(rows);
-		alert("Data table received");
+		//alert("Number of columns: " + cols);
+		//alert("Number of rows: " + rows);
 
-        populateBeachesAndTotals(data);
+		populateBeachesAndTotals(data);
+		
+		/*for (beach in beaches) {
+            var option = document.createElement('option');
+            option.id    = beach;
+            option.text  = beach;
+            option.value = beach;
+            select.appendChild(option);
+        }*/
+		
+
     }
 	
-	function populateBeachesAndTotals(data) {
-		alert("Moving on to populate printable data");
+	/**
+     * Creates the array of beaches that contains all the information about
+     * each beach (cost, episodes, etc.). This method loops through the data
+     * recieved from the query and instantiates the values in an array for use
+     * later.
+     *
+     * @param data a data table containing the data recieved from a query
+     */
+    function populateBeachesAndTotals(data) {
+		//alert("in");
         var latitudeColumn  = 1;
         var longitudeColumn = 2;
         var lengthColumn    = 3;
         var volumeColumn    = 4;
         var costColumn      = 5;
         var cost2010Column  = 6;
-
+		
         for (var i = 0; i < data.getNumberOfRows(); i++) {
-            var index = trim(data.getValue(i, 0));
+			alert(i);
+            //var index = trim(data.getValue(i, 0));
+			//var index = data.getValue(i, 0).trim();
+			alert("=" + index + "=");
+			alert(beaches[index]);
+			//BREAKS WHEN ACCESSING BEACHES[INDEX]
             if (beaches[index] == undefined) {
+				alert("if");
                 beaches[index] = new Object();
                 beaches[index].beach     = index;
                 beaches[index].episodes  = 1;
@@ -91,6 +118,7 @@
                 beaches[index].len       = data.getValue(i, lengthColumn);
                 beaches[index].cost2010  = data.getValue(i, cost2010Column);
             } else {
+				alert("Not undef");
                 beaches[index].episodes++;
                 beaches[index].cost     += data.getValue(i, costColumn);
                 beaches[index].volume   += data.getValue(i, volumeColumn);
@@ -98,7 +126,7 @@
                 beaches[index].cost2010 += data.getValue(i, cost2010Column);
             }
         }
-
+		alert("Through");
         jQuery.each(beaches, function() {
             if (this.episodes < min.episodes) {
                 min.episodes = this.episodes;
@@ -124,22 +152,7 @@
             totals.len      += this.len;
             totals.cost2010 += this.cost2010;
         });
-		document.getElementById('total_episodes').value = 
-                                           numberWithCommas(totals.episodes);
-        document.getElementById('total_cost').value = '$' 
-                                           + numberWithCommas(
-                                           Math.round(totals.cost));
-        document.getElementById('total_2010cost').value = '$' 
-                                           + numberWithCommas(
-                                           Math.round(totals.cost2010));
-        document.getElementById('total_volume').value = 
-                                           numberWithCommas(
-                                           Math.round(totals.volume));
-        document.getElementById('total_length').value = 
-                                           numberWithCommas(
-                                           Math.round(totals.len));
-        document.getElementById('totals').style.visibility = 'visible';
-		
+		alert("No problem");
     }
 	</script>
 		
