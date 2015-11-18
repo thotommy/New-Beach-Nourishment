@@ -90,7 +90,7 @@
 		//alert("Number of rows: " + rows);
 
 		populateBeachesAndTotals(data);
-		
+		writeValuesToPage();
 		
 		//new stuff
 		var select  = document.getElementById('beaches');
@@ -106,6 +106,66 @@
         }
 		
 
+    }
+	
+	/**
+     * Writes the values that were calculated from the data retrieved from the
+     * query to the page. This function gets the totals for the different
+     * parameters of the beaches and the minimum and maximum of each parameter
+     * anf then writes them to the appropriate point on the page.
+     */
+	function writeValuesToPage() {
+        document.getElementById('total_episodes').value = 
+                                           numberWithCommas(totals.episodes);
+        document.getElementById('total_cost').value = '$' 
+                                           + numberWithCommas(
+                                           Math.round(totals.cost));
+        document.getElementById('total_2010cost').value = '$' 
+                                           + numberWithCommas(
+                                           Math.round(totals.cost2010));
+        document.getElementById('total_volume').value = 
+                                           numberWithCommas(
+                                           Math.round(totals.volume));
+        document.getElementById('total_length').value = 
+                                           numberWithCommas(
+                                           Math.round(totals.len));
+        document.getElementById('totals').style.visibility = 'visible';
+        
+        var value = sortBy.toLowerCase();
+        var minText;
+        var maxText;
+        if (value == 'cost') {
+            minText = 'Min ' + sortBy + ': $'
+                      + numberWithCommas(min[value]);
+            maxText = 'Max ' + sortBy + ': $'
+                            + numberWithCommas(max[value]);
+        } else {
+            minText = 'Min ' + sortBy + ': '
+                      + numberWithCommas(min[value]);
+            maxText = 'Max ' + sortBy + ': '
+                            + numberWithCommas(max[value]);
+        }
+
+        document.getElementById('min').value   = minText;
+        document.getElementById('max').value   = maxText;
+
+        document.getElementById('heatkey').style.visibility = 'visible';
+        document.getElementById('key_img').style.visibility = 'visible';
+
+        var valueLength;
+        var valueWidth = document.getElementById('max').value + '';
+
+        if (valueWidth.substr(4, 4) == "Cost") {
+            valueLength = valueWidth.length - 1;
+        } else {
+            valueLength = valueWidth.length;
+        }
+
+        var newWidth = 280 - (valueLength * 7);
+        newWidth += 'px';
+
+        var div = document.getElementById('maxDiv');
+        div.style.left = newWidth;
     }
 	
 	/**
@@ -184,3 +244,68 @@
         <option value="<?php echo $state; ?>">Bob</option>
         <option value="<?php echo $state; ?>">View the original map</option>
     </select>
+	<hr size="3" width="100%"/>
+	
+	<table cols="3" id="totals" style="visibility: hidden;">
+              <tr>
+                <td align="right">
+                  <b>State Totals:</b>
+                </td>
+                <td width="150px">
+                  <font size="2px">Episodes:</font>
+                </td>
+                <td align="left">
+                  <input type="text" id="total_episodes" class="textBox totals" 
+                         style="font-size: 12px; text-align: right;" 
+                         size="20" readonly />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <font size="2px">Cost:</font>
+                </td>
+                <td align="left">
+                  <input type="text" id="total_cost" class="textBox totals" 
+                         style="font-size: 12px; text-align: right;" 
+                         size="20" readonly />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <font size="2px">Cost (in 2014 dollars):</font>
+                </td>
+                <td align="left">
+                  <input type="text" id="total_2010cost" class="textBox totals" 
+                         style="font-size: 12px; text-align: right;" 
+                         size="20" readonly />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <font size="2px">Volume (cubic yards):</font>
+                </td>
+                <td align="left">
+                  <input type="text" id="total_volume" class="textBox totals" 
+                         style="font-size: 12px; text-align: right;" 
+                         size="20" readonly />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <font size="2px">Length (feet):</font>
+                </td>
+                <td align="left">
+                  <input type="text" id="total_length" class="textBox totals" 
+                         style="font-size: 12px; text-align: right;" 
+                         size="20" readonly />
+                </td>
+              </tr>
+            </table>
