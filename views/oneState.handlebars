@@ -74,7 +74,7 @@
      * @param response the query response that is created from the query
      */
     function queryResponse(response) {
-		alert("In Callback");
+		//alert("In Callback");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                   response.getDetailedMessage());
@@ -91,13 +91,19 @@
 
 		populateBeachesAndTotals(data);
 		
-		/*for (beach in beaches) {
+		
+		//new stuff
+		var select  = document.getElementById('beaches');
+        var options = select.getElementsByTagName('option');
+		//end new stuff
+		
+		for (beach in beaches) {
             var option = document.createElement('option');
             option.id    = beach;
             option.text  = beach;
             option.value = beach;
             select.appendChild(option);
-        }*/
+        }
 		
 
     }
@@ -145,7 +151,6 @@
                 beaches[index].cost2010 += data.getValue(i, cost2010Column);
             }
         }
-		alert("Through");
         jQuery.each(beaches, function() {
             if (this.episodes < min.episodes) {
                 min.episodes = this.episodes;
@@ -171,8 +176,11 @@
             totals.len      += this.len;
             totals.cost2010 += this.cost2010;
         });
-		alert("No problem");
     }
 	</script>
 		
 
+	<select name="beaches" id="beaches" <!--onChange="moveMap(this.options[this.selectedIndex].value);"-->>
+        <option value="<?php echo $state; ?>">Bob</option>
+        <option value="<?php echo $state; ?>">View the original map</option>
+    </select>
