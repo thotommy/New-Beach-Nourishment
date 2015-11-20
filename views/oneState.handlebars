@@ -90,6 +90,13 @@
 		//alert("Number of columns: " + cols);
 		//alert("Number of rows: " + rows);
 
+		
+        for (var i = 0; i < document.radios.sort.length; i++) {
+            if (document.radios.sort[i].checked) {
+                sortBy = document.radios.sort[i].value;
+            }
+        }
+		
 		populateBeachesAndTotals(data);
 		writeValuesToPage();
 		
@@ -217,13 +224,12 @@
             maxText = 'Max ' + sortBy + ': '
                             + numberWithCommas(max[value]);
         }
-		alert("before");
         document.getElementById('min').value   = minText;
         document.getElementById('max').value   = maxText;
-		alert("after");
+
         document.getElementById('heatkey').style.visibility = 'visible';
         document.getElementById('key_img').style.visibility = 'visible';
-
+		alert("after heat");
         var valueLength;
         var valueWidth = document.getElementById('max').value + '';
 
@@ -321,8 +327,36 @@
         </div>
         <br />
         <div class="heat-img">
-          <!--<img id="key_img" alt="heat_key" src="images/heat_key.png" style="visibility: hidden; border-width: 0px;" />-->
+          <img id="key_img" alt="heat_key" src="images/heat_key.png" style="visibility: hidden; border-width: 0px;" /
         </div>
       </div>
    </td>
   </tr>
+  </table>
+  <table cols="4" align="center" style="position: relative; right: -170px;">
+        <tr>
+          <form name="radios" id="radios">
+            <td>
+              <b>Sort by:</b>
+            </td>
+            <td>
+              <label for="episodes">
+                <input type="radio" id="episodes" name="sort" value="Episodes" 
+                       checked onClick="reDrawMap();" />Episodes
+              </label>
+            </td>
+            <td>
+              <label for="cost">
+                <input type="radio" id="cost" name="sort" value="Cost" 
+                       onClick="reDrawMap();" />Cost
+              </label>
+            </td>
+            <td>
+              <label for="volume">
+                <input type="radio" id="volume" name="sort" value="Volume" 
+                       onClick="reDrawMap();" />Volume (cubic yards)
+              </label>
+            </td>
+          </form>
+        </tr>
+    </table>
