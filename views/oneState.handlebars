@@ -1,7 +1,4 @@
-   <!doctype html>
-   <!--<p>{{data}}</p>
-		<p>Testing</p>-->
-	
+<!doctype html>	
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript" src="javascript/states.js"></script>
 	<script type="text/javascript" src="javascript/useful_function.js"></script>
@@ -192,67 +189,112 @@
      * parameters of the beaches and the minimum and maximum of each parameter
      * anf then writes them to the appropriate point on the page.
      */
-	function writeValuesToPage() {
+    function writeValuesToPage() {
         document.getElementById('total_episodes').value = 
-                                           numberWithCommas(totals.episodes);
-        document.getElementById('total_cost').value = '$' 
-                                           + numberWithCommas(
-                                           Math.round(totals.cost));
-        document.getElementById('total_2010cost').value = '$' 
-                                           + numberWithCommas(
-                                           Math.round(totals.cost2010));
-        document.getElementById('total_volume').value = 
-                                           numberWithCommas(
-                                           Math.round(totals.volume));
-        document.getElementById('total_length').value = 
-                                           numberWithCommas(
-                                           Math.round(totals.len));
-        document.getElementById('totals').style.visibility = 'visible';
-        alert("after printing");
-        var value = sortBy.toLowerCase();
-        var minText;
-        var maxText;
-		alert("way before");
+				   numberWithCommas(totals.episodes);
+	document.getElementById('total_cost').value = '$' 
+	               		   + numberWithCommas(
+				   Math.round(totals.cost));
+	document.getElementById('total_2010cost').value = '$' 
+				   + numberWithCommas(
+			           Math.round(totals.cost2010));
+	document.getElementById('total_volume').value = 
+				   numberWithCommas(
+				   Math.round(totals.volume));
+	document.getElementById('total_length').value = 
+				   numberWithCommas(
+				   Math.round(totals.len));
+	document.getElementById('totals').style.visibility = 'visible';
+	alert("after printing");
+	var value = sortBy.toLowerCase();
+	var minText;
+	var maxText;
+	alert("way before");
         if (value == 'cost') {
-            minText = 'Min ' + sortBy + ': $'
-                      + numberWithCommas(min[value]);
-            maxText = 'Max ' + sortBy + ': $'
-                            + numberWithCommas(max[value]);
-        } else {
-            minText = 'Min ' + sortBy + ': '
-                      + numberWithCommas(min[value]);
-            maxText = 'Max ' + sortBy + ': '
-                            + numberWithCommas(max[value]);
-        }
-        document.getElementById('min').value   = minText;
-        document.getElementById('max').value   = maxText;
-
+	    minText = 'Min ' + sortBy + ': $'
+	       + numberWithCommas(min[value]);
+	    maxText = 'Max ' + sortBy + ': $'
+	       + numberWithCommas(max[value]);
+	} else {
+	    minText = 'Min ' + sortBy + ': '
+	       + numberWithCommas(min[value]);
+	    maxText = 'Max ' + sortBy + ': '
+	       + numberWithCommas(max[value]);
+	}
+	document.getElementById('min').value   = minText;
+	document.getElementById('max').value   = maxText;
+	
         document.getElementById('heatkey').style.visibility = 'visible';
-        document.getElementById('key_img').style.visibility = 'visible';
-		alert("after heat");
-        var valueLength;
-        var valueWidth = document.getElementById('max').value + '';
+	document.getElementById('key_img').style.visibility = 'visible';
+	alert("after heat");
+	var valueLength;
+	var valueWidth = document.getElementById('max').value + '';
 
-        if (valueWidth.substr(4, 4) == "Cost") {
-            valueLength = valueWidth.length - 1;
-        } else {
-            valueLength = valueWidth.length;
-        }
+	if (valueWidth.substr(4, 4) == "Cost") {
+	    valueLength = valueWidth.length - 1;
+	} else {
+	    valueLength = valueWidth.length;
+	}
 
-        var newWidth = 280 - (valueLength * 7);
-        newWidth += 'px';
+	var newWidth = 280 - (valueLength * 7);
+       	newWidth += 'px';
 
-        var div = document.getElementById('maxDiv');
-        div.style.left = newWidth;
+	var div = document.getElementById('maxDiv');
+	div.style.left = newWidth;
+    }
+    
+    function reDrawMap() {
+	var origSort = sortBy;
+	for (var i = 0; i < document.radios.sort.length;i++) {
+	    if (document.radios.sort[i].checked) {
+		sortBy = document.radios.sort[i].value;
+	    }
+	}
+	var selected = document.getElementById('beaches').selectedIndex;
+	
+	if (origSort != sortBy || selected == 1) {
+	    writeValuesToPage();
+	}
+	    
     }
 	</script>
 		
   <tr align="center">
    <td>
-	<select name="beaches" id="beaches" onChange="moveMap(this.options[this.selectedIndex].value);">
-        <option value="<?php echo $state; ?>">Bob</option>
-        <option value="<?php echo $state; ?>">View the original map</option>
-    </select>
+     <h2>{{{fullStateName}}}</h2>
+     <select name="beaches" id="beaches" onChange="moveMap(this.options[this.selectedIndex].value);">
+       <option value="<?php echo $state; ?>">Select a beach</option>
+       <option value="<?php echo $state; ?>">View the original map</option>
+     </select>
+   </td>
+  <tr> 
+   <td>
+     <select name="states" id="states" onChange="if(this.value) window.location.href=this.value, '_top'">
+       <option value=".">Select another state</option>
+       <option value=".">Home</option>
+       <option value="/oneState?state=AL">Alabama</option>		
+       <option value="/oneState?state=CA">California</option>		
+       <option value="/oneState?state=CT">Connecticut</option>		
+       <option value="/oneState?state=DE">Delaware</option>		
+       <option value="/oneState?state=FL">Florida</option>		
+       <option value="/oneState?state=GA">Georgia</option>		
+       <option value="/oneState?state=LA">Louisiana</option>		
+       <option value="/oneState?state=MA">Massachusetts</option>		
+       <option value="/oneState?state=MD">Maryland</option>		
+       <option value="/oneState?state=ME">Maine</option>		
+       <option value="/oneState?state=MS">Mississippi</option>		
+       <option value="/oneState?state=NC">North Carolina</option>		
+       <option value="/oneState?state=NJ">New Jersey</option>		
+       <option value="/oneState?state=NH">New Hampshire</option><!--This could be prob-->		
+       <option value="/oneState?state=NY">New York</option>		
+       <option value="/oneState?state=RI">Rhode Island</option>		
+       <option value="/oneState?state=SC">South Carolina</option>		
+       <option value="/oneState?state=TX">Texas</option>		
+       <option value="/oneState?state=VA">Virginia</option>		
+       <option value="/oneState?state=WA">Washington</option>		
+     </select>
+   </td>
+  </tr>
 	<hr size="3" width="100%"/>
 	
 	<table cols="3" id="totals" style="visibility: hidden;">

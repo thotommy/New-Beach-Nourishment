@@ -56,10 +56,12 @@ function generateOneStateData(current_state) {
         fullStateName = "Alabama";
     } else if (current_state == "CA") {
         fullStateName = "California";
-    } else if (current_state == "CN") {
+    } else if (current_state == "CT") {
         fullStateName = "Connecticut";
     } else if (current_state == "DE") {
         fullStateName = "Delaware";
+    } else if (current_state =="FL") {
+	fullStateName = "Florida";
     } else if (current_state == "GA") {
         fullStateName = "Georgia";
     } else if (current_state == "LA") {
@@ -76,6 +78,10 @@ function generateOneStateData(current_state) {
         fullStateName = "North Carolina";
     } else if (current_state == "NJ") {
         fullStateName = "New Jersey";
+    } else if (current_state == "NH") {
+	fullStateName = "New Hampshire";
+    } else if (current_state == "NY") {
+	fullStateName = "New York";
     } else if (current_state == "RI") {
         fullStateName = "Rhode Island";
     } else if (current_state == "SC") {
