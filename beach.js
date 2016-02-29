@@ -29,7 +29,10 @@ app.get('/oneState', function(req,res) {
     var fullStateName = generateOneStateData(state);
     res.render('oneState', { state: state, fullStateName: fullStateName });     
 });
- 
+
+app.get('/about', function(req,res) {
+    res.render('about');
+});
 
 /*404 catch-all handler (middleware)*/
 app.use(function(req,res,next) {

@@ -1,18 +1,49 @@
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css"/>
-
-<img src="/images/new_banner.png" style="border: 5px solid #000000;
-    border-radius:5px;"/>
-<!--<h1> Beach Nourishment Viewer</h1>
-<h3> Program for the study of Developed Shorelines @ WCU</h3>-->
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
 {{{title}}}
-
 </head>
 
-<body bgcolor="#4db5ff">
-   <table>
+
+<body>
+<!--Nav Bar-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Beach Nourishment</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li ><a href="/">Home</a></li>
+                <li class="active"><a href="http://psds.wcu.edu/">PSDS Website</a></li>
+                <li><a href="http://psds.shutterfly.com/">PSDS Images</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<table align="center">
+           <tr>
+             <td>
+                <img hspace="20px" src="/images/new_banner.png"/>
+                <img src="/images/facebook.png"/>
+                <img src="images/logos/wcu_index_logo.jpg"/>
+             </td>
+           </tr>
+
+       <tr>
+           <td>
+               <hr size="3" width="100%"/>
+           </td>
+       </tr>
     {{{body}}}
    </table>
 </body>
