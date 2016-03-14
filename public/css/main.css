@@ -1,11 +1,211 @@
+#logo {
+  width: 992px;
+  height: 120px;
+  margin-bottom: -25px;
+  margin-left: 0px;
+  margin-top: -20px;
+  position: relative;
+  z-index: -1;
+  border: 5px solid #ffffff;
+  border-radius: 5px 5px 0px 0px;
+  behavior: url(scripts/pie/PIE.htc);
+}
 
-#map_canvas {
+.facebook-logo {
+  background: url("../../images/facebook.png");
+  width: 60px;
+  height: 60px;
+  float: left;
+  display: table-cell;
+  margin-right: 15px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.wcu-logo {
+  background: url("../../images/logos/wcu_index_logo.jpg");
+  width: 130px;
+  height: 65px;
+  float: left;
+  display: table-cell;
+  margin-right: 15px;
+  margin-top: 20px;
+  position: relative;
+}
+
+/*Map Canvas*/
+
+#map_canvas { 
   text-align: center;
   height: 472px;
   width: 980px;
   margin: auto;
-  border: 5px solid #80c2d0;
-  border-radius: 5px;
   margin-left: -7px;
   position: relative;
+
+}
+
+#cost_canvas {
+  background: transparent;
+  width: 370px;
+  height: 370px;
+  position: relative;
+  top: 15px;
+  left: 30px;
+  padding: 0;
+  float: left;
+  z-index: 100;
+}
+
+#volume_canvas {
+  background: transparent;
+  width: 370px;
+  height: 370px;
+  position: relative;
+  top: 15px;
+  left: 30px;
+  margin: auto;
+  padding: 0;
+  float: right;
+  z-index: 100;
+}
+
+
+.eastkey {
+  margin: 0px;
+  padding: 0px;
+  float: right;
+  position: relative;
+  top: -60px;
+  left: -60px;
+}
+
+.westkey {
+  margin: 0px;
+  padding: 0px;
+  float: right;
+  position: relative;
+  top: -60px;
+  left: -555px;
+}
+
+.textBox {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  background-color: transparent;
+  font-size: 12px;
+  font-family: "Arial";
+}
+
+.min {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: -11px;
+}
+
+.max {
+  position: relative;
+  top: -25px;
+  left: 160px;
+}
+
+.heat-img {
+  background-color: transparent;
+  position: relative;
+  top: -40px;
+}
+
+.space {
+  height: 10px;
+}
+
+.stats{
+  margin: 0px;
+  padding: 0px;
+  float: auto;
+  position: relative;
+}
+
+.table-header {
+  font-weight: bold;
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.totals {
+  font: 12px "Times New Roman", Times, serif;
+  text-align: right;
+}
+
+/** page title **/
+
+.section-title{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+/*About page in Beach Nourishment*/
+
+.developer {
+  display: table-cell;
+  margin-top: 15px;
+  width: 850px;
+  min-height: 140px;
+  vertical-align: middle;
+}
+
+.developer p {
+  float: left;
+  width: 650px;
+  padding-top: 25px;
+}
+
+.dev-pic {
+  width: 120px;
+  height: 120px;
+  float: left;
+  display: table-cell;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+#cristina-dev-pic {
+  background: url("../../images/devs/cristina.jpg");
+}
+
+#russell-dev-pic {
+  background: url("../../images/devs/russell.jpg");
+}
+
+#brian-dev-pic {
+  background: url("../../images/devs/brian.jpg");
+}
+
+#holliday-dev-pic {
+  background: url("../../images/devs/holliday.jpg");
+}
+
+#katie-dev-pic {
+  background: url("../../images/devs/katie.jpg");
+}
+
+#rob-dev-pic {
+  background: url("../../images/devs/rob.jpg");
+}
+
+#brad-dev-pic {
+  background: url("../../images/devs/brad.jpg");
+}
+
+#coburn-dev-pic {
+  background: url("../../images/devs/coburn.jpg");
+}
+
+#chris-dev-pic {
+  background: url("../../images/devs/no_photo.jpg");
 }
