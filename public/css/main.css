@@ -8,7 +8,6 @@
   z-index: -1;
   border: 5px solid #ffffff;
   border-radius: 5px 5px 0px 0px;
-  behavior: url(scripts/pie/PIE.htc);
 }
 
 .facebook-logo {
