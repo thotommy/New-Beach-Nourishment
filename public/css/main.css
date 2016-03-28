@@ -1,35 +1,10 @@
-#logo {
-  width: 992px;
-  height: 120px;
-  margin-bottom: -25px;
-  margin-left: 0px;
-  margin-top: -20px;
-  position: relative;
-  z-index: -1;
-  border: 5px solid #ffffff;
-  border-radius: 5px 5px 0px 0px;
-}
 
 .facebook-logo {
-  background: url("../../images/facebook.png");
-  width: 60px;
-  height: 60px;
-  float: left;
-  display: table-cell;
-  margin-right: 15px;
-  margin-top: 20px;
-  position: relative;
+  float: right;
 }
 
 .wcu-logo {
-  background: url("../../images/logos/wcu_index_logo.jpg");
-  width: 130px;
-  height: 65px;
-  float: left;
-  display: table-cell;
-  margin-right: 15px;
-  margin-top: 20px;
-  position: relative;
+  float: right;
 }
 
 /*Map Canvas*/
@@ -38,8 +13,8 @@
   text-align: center;
   height: 472px;
   width: 980px;
-  margin: auto;
-  margin-left: -7px;
+  /*margin: auto;
+  margin-left: -7px;*/
   position: relative;
 
 }
@@ -70,12 +45,19 @@
 }
 
 
+/*Heat key*/
+.heat-img {
+    background-color: transparent;
+    position: relative;
+    top: -40px;
+}
+
 .eastkey {
   margin: 0px;
   padding: 0px;
   float: right;
   position: relative;
-  top: -60px;
+  /top: -60px;
   left: -60px;
 }
 
@@ -150,9 +132,9 @@
 
 .developer {
   display: table-cell;
-  margin-top: 15px;
+  /*margin-top: 15px;
   width: 850px;
-  min-height: 140px;
+  min-height: 140px;*/
   vertical-align: middle;
 }
 
@@ -166,45 +148,5 @@
   width: 120px;
   height: 120px;
   float: left;
-  display: table-cell;
-  margin-right: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   border-radius: 10px;
-}
-
-#cristina-dev-pic {
-  background: url("../../images/devs/cristina.jpg");
-}
-
-#russell-dev-pic {
-  background: url("../../images/devs/russell.jpg");
-}
-
-#brian-dev-pic {
-  background: url("../../images/devs/brian.jpg");
-}
-
-#holliday-dev-pic {
-  background: url("../../images/devs/holliday.jpg");
-}
-
-#katie-dev-pic {
-  background: url("../../images/devs/katie.jpg");
-}
-
-#rob-dev-pic {
-  background: url("../../images/devs/rob.jpg");
-}
-
-#brad-dev-pic {
-  background: url("../../images/devs/brad.jpg");
-}
-
-#coburn-dev-pic {
-  background: url("../../images/devs/coburn.jpg");
-}
-
-#chris-dev-pic {
-  background: url("../../images/devs/no_photo.jpg");
 }
