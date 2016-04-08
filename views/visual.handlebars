@@ -1,22 +1,23 @@
-
-<script type="text/javascript" src="scripts/js/states.js"></script>
+<!DOCTYPE html>
+<script type="text/javascript" src="javascript/states.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript" src="scripts/js/useful_function.js"></script>
+<script type="text/javascript" src="javascript/useful_function.js"></script>
 <script type="text/javascript">
-    <!--
+    
     /** Determines how you're going to order the graphs by. */
     var orderBy = 'date';
 
-    google.load('visualization', '1.0', {'packages' : ['corechart']});
-    google.setOnLoadCallback(createPageElements);
-
+    /*google.load('visualization', '1.0', {'packages' : ['corechart']});
+    google.setOnLoadCallback(createPageElements);*/
+    google.load('visualization', '1.0', {'packages' : ['corechart'], callback:createPageElements});
+    alert("I am in visualization");
     /**
      * Creates the various page elements from the data recieved from the query.
      * This function is called as soon as Google Visualization libraries are
      * loaded.
      */
     function createPageElements() {
-        alert("beach = " + "{{beach}}" + "state= " + "{{state}}"})
+        alert("beach = " + "{{beach}}" + "state= " + "{{state}}");
         var state = "{{state}}";
         var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var costQuery = new google.visualization.Query(createDataUrl("Master"));

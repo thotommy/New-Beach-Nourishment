@@ -103,7 +103,3 @@ function generateOneStateData(current_state) {
     }
 	return fullStateName;
 };
-
-
-
-
