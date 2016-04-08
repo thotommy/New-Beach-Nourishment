@@ -10,12 +10,15 @@
 /*Map Canvas*/
 
 #map_canvas { 
-  text-align: center;
-  height: 472px;
-  width: 980px;
+  /*text-align: center;*/
+  
+  display: block;
+  height: 472px;/*472*/
+  width: 80%;
+
   /*margin: auto;
   margin-left: -7px;*/
-  position: relative;
+  /*position: relative;*/
 
 }
 

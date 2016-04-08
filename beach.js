@@ -6,6 +6,7 @@
 var express = require('express');
 var app = express();
 
+
 /*Sets up the handlebars for the beach app*/
 var handlebars = require('express3-handlebars')
     .create({ defaultLayout: 'main' });
@@ -28,6 +29,14 @@ app.get('/oneState', function(req,res) {
     var state = req.query.state; //get the state from the query string
     var fullStateName = generateOneStateData(state);
     res.render('oneState', { state: state, fullStateName: fullStateName });     
+});
+
+app.get('/visual', function (req,res) {
+    var state = req.query.state; //get the state from the query string
+    var fullStateName = generateOneStateData(state);
+    var beach = req.query.beach;
+    var beachName = generateBeachData(beach)
+    res.render('visual', {state: state, fullStateName: fullStateName, beach:});
 });
 
 app.get('/about', function(req,res) {
@@ -98,4 +107,11 @@ function generateOneStateData(current_state) {
     }
 	return fullStateName;
 };
+
+function generateBeachData(current_beach) {
+    for (var i = 0; i < data.getNumberOfRows(); i++) {
+        var index = data.getValue(i, 0).trim();
+
+}
+
 

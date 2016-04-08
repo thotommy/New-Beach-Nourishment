@@ -9,7 +9,9 @@
   "author": "Tommy Ho and Paul Raiche",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.3",
+    "express-session": "^1.13.0",
     "express3-handlebars": "^0.5.2"
   },
   "devDependencies": {}
