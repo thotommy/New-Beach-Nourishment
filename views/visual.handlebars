@@ -17,7 +17,8 @@
      * loaded.
      */
     function createPageElements() {
-        alert("beach = " + "{{beach}}" + "state= " + "{{state}}");
+        alert("beach = " + "{{beach}}" + " fullstate= " + "{{fullStateName}}");
+        alert("state is " +"{{state}}");
         var state = "{{state}}";
         var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
