@@ -14,8 +14,6 @@ var handlebars = require('express3-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-/*This line will make all static items in public visible to users*/
-//app.use(express.static(__dirname + '/public'));
 app.use(express.static('public'));
 
 app.set('port', process.env.PORT || 3000);
@@ -35,8 +33,7 @@ app.get('/visual', function (req,res) {
     var state = req.query.state; //get the state from the query string
     var fullStateName = generateOneStateData(state);
     var beach = req.query.beach;
-    var beachName = generateBeachData(beach)
-    res.render('visual', {state: state, fullStateName: fullStateName, beach:});
+    res.render('visual', {state: state, fullStateName: fullStateName, beach:beach});
 });
 
 app.get('/about', function(req,res) {
@@ -60,7 +57,6 @@ app.listen(app.get('port'), function() {
     console.log('Server starts on http://localhost:' +
                 app.get('port') + '; press Ctrl-C to terminate.');
 });
-
 
 function generateOneStateData(current_state) {
 	var fullStateName = "";
@@ -108,10 +104,6 @@ function generateOneStateData(current_state) {
 	return fullStateName;
 };
 
-function generateBeachData(current_beach) {
-    for (var i = 0; i < data.getNumberOfRows(); i++) {
-        var index = data.getValue(i, 0).trim();
 
-}
 
 

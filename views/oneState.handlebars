@@ -6,8 +6,7 @@
 <script type="text/javascript" src="javascript/useful_function.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="javascript/map.js"></script>
-<!--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
-<script src='//maps.googleapis.com/maps/api/js'></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
     var beaches;
     var sortBy;
@@ -88,7 +87,7 @@
         var cols = data.getNumberOfColumns();
         var rows = data.getNumberOfRows();
         //alert("Number of columns: " + cols);
-        alert("Number of rows: " + rows);
+        //alert("Number of rows: " + rows);
 
 
         for (var i = 0; i < document.radios.sort.length; i++) {
@@ -307,7 +306,7 @@
                                 + '<font size=2px">' + numberWithCommas(unit2010Cost)
                                 + '</font></td></tr>'
                                 + '</tr></table>'
-                                + '<a href="visual?state=<?php echo $state; ?>&beach='
+                                + '<a href="visualization.php?state=<?php echo $state; ?>&beach='
                                 + beach.beach + '" target="_top">Click here</a> '
                                 + 'for more information</div>';
 
@@ -366,7 +365,7 @@
 </select>
             </div>
 <!--<table cols="3" id="totals" style="visibility: hidden;">-->
-<div class=".col-xs-5" align="center">
+<div class=".col-xs-5">
             <div class="table-responsive" align="right">
                 <table id="totals">
                     <tr>
@@ -434,9 +433,13 @@
 </div>
 
 <!--Google Map-->
-        <div align="center">
-            <div id="map_canvas" class="map_canvas"></div>
-        </div>
+<table align="center">
+    <tr>
+        <td align="center">
+            <div id="map_canvas"></div>
+        </td>
+    </tr>
+</table>
 <!--Google Map-->
 
 
