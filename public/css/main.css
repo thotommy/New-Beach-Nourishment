@@ -1,3 +1,9 @@
+svg {height:45vw; }
+path{
+  fill:#004d99;
+  transition: .6s fill;
+}
+path:hover {fill: #b3d9ff;}
 
 .facebook-logo {
   float: right;
@@ -9,17 +15,10 @@
 
 /*Map Canvas*/
 
-#map_canvas { 
-  /*text-align: center;*/
-  
+#map_canvas {
   display: block;
   height: 472px;/*472*/
   width: 80%;
-
-  /*margin: auto;
-  margin-left: -7px;*/
-  /*position: relative;*/
-
 }
 
 #cost_canvas {
