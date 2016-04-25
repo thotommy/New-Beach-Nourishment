@@ -3,6 +3,7 @@
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
 <script type="text/javascript">
+
     /** Determines how you're going to order the graphs by. */
     var orderBy = 'date';
 
@@ -12,14 +13,14 @@
         'packages': ['corechart'],
         callback: createPageElements
     });
-    alert("I am in visualization. " + "beach= " + "{{beach}}" + "state=" + "{{state}}");
+    //alert("I am in visualization. " + "beach= " + "{{beach}}" + "state=" + "{{state}}");
     /**
      * Creates the various page elements from the data recieved from the query.
      * This function is called as soon as Google Visualization libraries are
      * loaded.
      */
     function createPageElements() {
-        alert("In the CreatePageElements function");
+        //alert("In the CreatePageElements function");
         /*alert("beach = " + "{{beach}}" + " fullstate= " + "{{fullStateName}}");
         alert("state is " + "{{state}}");*/
         /*var state = "SC";
@@ -29,6 +30,7 @@
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
 */
         var state = "{{state}}";
+        alert("state is " + "{{state}}");
         var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -151,10 +153,10 @@
      * @param response the response that is returned from the query
      */
     function getTotalsAndCreateSelect(response) {
-        alert("What is the response it is " + response);
+        //alert("What is the response it is " + response);
         alert("In the getTotalsAndCreateSelect function");
         var data = response.getDataTable();
-        alert("the data is in getTotalsAndCreateSelect" + data);
+        //alert("the data is in getTotalsAndCreateSelect" + data);
         var beaches = new Array();
         var totals = new Object();
         totals.cost = 0;
@@ -167,25 +169,25 @@
         var volumeColumn = lengthColumn + 1;
         var costColumn = volumeColumn + 1;
         var cost2010Column = costColumn + 1;
-        alert("About to hit the for loop in the getTotalsAndCreateSelect function");
-        alert("Print the data.getNumberOfRows()" + data.getNumberOfRows());
+        //alert("About to hit the for loop in the getTotalsAndCreateSelect function");
+        //alert("Print the data.getNumberOfRows()" + data.getNumberOfRows());
         for (var i = 0; i < data.getNumberOfRows(); i++) {
-            alert("In the for loop incremeneting i? i is " + i);
+            //alert("In the for loop incremeneting i? i is " + i);
             beach = trim(data.getValue(i, 0));
-            alert("IN the for loop printing out the beach " + beach);
+            //alert("IN the for loop printing out the beach " + beach);
             if (beach.length > 0 && (beaches.indexOf(beach) == -1)) {
                 beaches.push(beach);
-                alert("Do I get into this If statment after the loop?");
+                //alert("Do I get into this If statment after the loop?");
                 var select = document.getElementById('perpage');
                 var option = document.createElement('option');
-                alert("HIIIII");
+                //alert("HIIIII");
                 option.id = beach;
                 option.text = beach;
                 option.value =
                     "visual?state={{state}}&beach=" +
                     beach.beach;
 
-                alert("HII2");
+                //alert("HII2");
                 if(select) {
                    alert("Then it exists!");
                 } else {
@@ -263,18 +265,7 @@
         costQuery.send(createCostVisualization);
         volumeQuery.send(createVolumeVisualization);
     }
-    //-->
 </script>
-<?php
-include_once("nav_bar.php");
-if ($state == "") {
-?>
-    <script type="text/javascript">
-        window.location = ".";
-    </script>
-    <?php
-} else {
-?>
         <div id="body_div" class="body-container drop-shadow">
             <div id="content">
                 <div class="section-title">
@@ -509,6 +500,3 @@ if ($state == "") {
         </body>
 
         </html>
-        <?php
-}
-?>

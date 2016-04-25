@@ -30,7 +30,7 @@ app.get('/oneState', function(req,res) {
 });
 
 app.get('/visual', function (req,res) {
-    var state = "SC"; //get the state from the query string
+    var state = req.query.state; //get the state from the query string
     /*var fullStateName = generateOneStateData(state);*/
     var beach = req.query.beach;
     res.render('visual', {state: state, beach: beach});
