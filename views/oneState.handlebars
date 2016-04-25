@@ -1,6 +1,4 @@
 <!doctype html>
-
-
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/states.js"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
@@ -33,7 +31,9 @@
 
 
     // Load the Visualization API and the piechart package.
-    google.load('visualization', '1', {'packages': ['corechart']});
+    google.load('visualization', '1', {
+        'packages': ['corechart']
+    });
 
     google.setOnLoadCallback(initialize);
 
@@ -62,8 +62,8 @@
         var state = "{{state}}";
         var fullStateName = "{{fullStateName}}";
         var query = new google.visualization.Query(createDataUrl("Master"));
-        query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state
-                + "' Order By A");
+        query.setQuery("Select A, D, E, H, I, J, L Where B = '" + state +
+            "' Order By A");
         query.send(queryResponse);
     }
 
@@ -78,7 +78,7 @@
     function queryResponse(response) {
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
-                    response.getDetailedMessage());
+                response.getDetailedMessage());
             return;
         }
 
@@ -137,9 +137,9 @@
                 beaches[index].beach = index;
                 beaches[index].episodes = 1;
                 beaches[index].latitude = data.getValue(i,
-                        latitudeColumn);
+                    latitudeColumn);
                 beaches[index].longitude = data.getValue(i,
-                        longitudeColumn);
+                    longitudeColumn);
                 beaches[index].cost = data.getValue(i, costColumn);
                 beaches[index].volume = data.getValue(i, volumeColumn);
                 beaches[index].len = data.getValue(i, lengthColumn);
@@ -152,7 +152,7 @@
                 beaches[index].cost2010 += data.getValue(i, cost2010Column);
             }
         }
-        jQuery.each(beaches, function () {
+        jQuery.each(beaches, function() {
             if (this.episodes < min.episodes) {
                 min.episodes = this.episodes;
             }
@@ -186,33 +186,28 @@
      */
     function writeValuesToPage() {
         document.getElementById('total_episodes').value =
-                numberWithCommas(totals.episodes);
-        document.getElementById('total_cost').value = '$'
-                + numberWithCommas(
-                        Math.round(totals.cost));
-        document.getElementById('total_2010cost').value = '$'
-                + numberWithCommas(
-                        Math.round(totals.cost2010));
+            numberWithCommas(totals.episodes);
+        document.getElementById('total_cost').value = '$' + numberWithCommas(
+            Math.round(totals.cost));
+        document.getElementById('total_2010cost').value = '$' +
+            numberWithCommas(
+                Math.round(totals.cost2010));
         document.getElementById('total_volume').value =
-                numberWithCommas(
-                        Math.round(totals.volume));
+            numberWithCommas(
+                Math.round(totals.volume));
         document.getElementById('total_length').value =
-                numberWithCommas(
-                        Math.round(totals.len));
+            numberWithCommas(
+                Math.round(totals.len));
         document.getElementById('totals').style.visibility = 'visible';
         var value = sortBy.toLowerCase();
         var minText;
         var maxText;
         if (value == 'cost') {
-            minText = 'Min ' + sortBy + ': $'
-                    + numberWithCommas(min[value]);
-            maxText = 'Max ' + sortBy + ': $'
-                    + numberWithCommas(max[value]);
+            minText = 'Min ' + sortBy + ': $' + numberWithCommas(min[value]);
+            maxText = 'Max ' + sortBy + ': $' + numberWithCommas(max[value]);
         } else {
-            minText = 'Min ' + sortBy + ': '
-                    + numberWithCommas(min[value]);
-            maxText = 'Max ' + sortBy + ': '
-                    + numberWithCommas(max[value]);
+            minText = 'Min ' + sortBy + ': ' + numberWithCommas(min[value]);
+            maxText = 'Max ' + sortBy + ': ' + numberWithCommas(max[value]);
         }
         document.getElementById('min').value = minText;
         document.getElementById('max').value = maxText;
@@ -245,14 +240,15 @@
         var selected = document.getElementById('beaches').selectedIndex;
         if (origSort != sortBy || selected == 1) {
             writeValuesToPage();
-            createMap(beaches, '{{state}}', sortBy, myMap.getZoom(), myMap.getCenter(), max);
+            createMap(beaches, '{{state}}', sortBy, myMap.getZoom(), myMap.getCenter(),
+                max);
             if (selectedMarker != null) {
-                jQuery.each(markers, function () {
+                jQuery.each(markers, function() {
                     var newPosition = this.getPosition();
                     var oldPosition = selectedMarker.getPosition();
                     if ((roundNumber(newPosition.lat(), 5) ==
                             roundNumber(oldPosition.lat(), 5)) &&
-                            (roundNumber(newPosition.lng(), 5) ==
+                        (roundNumber(newPosition.lng(), 5) ==
                             roundNumber(oldPosition.lng(), 5))) {
                         infoWindow.setPosition(this.getPosition());
                         infoWindow.open(myMap, this);
@@ -276,40 +272,48 @@
         if (beaches[newLocation] != undefined) {
             var beach = beaches[newLocation];
             if (beach.latitude != null && beach.longitude != null) {
-                jQuery.each(markers, function () {
+                jQuery.each(markers, function() {
                     var position = this.getPosition();
                     if ((roundNumber(position.lat(), 5) ==
                             roundNumber(beach.latitude, 5)) &&
-                            (roundNumber(position.lng(), 5) ==
+                        (roundNumber(position.lng(), 5) ==
                             roundNumber(beach.longitude, 5))) {
                         var unitCost = '$' + Math.round(beach.cost);
                         var unit2010Cost = '$' + Math.round(beach.cost2010);
-                        var unitVolume = Math.round(beach.volume) + ' (cubic yards)';
-                        var unitLength = Math.round(beach.len) + ' (feet)';
+                        var unitVolume = Math.round(beach.volume) +
+                            ' (cubic yards)';
+                        var unitLength = Math.round(beach.len) +
+                            ' (feet)';
 
                         var contentString =
-                                '<div style="height: 210px; width: 430px;">'
-                                + '<table cols="2" style="border-spacing: 10px 5px;">'
-                                + '<tr><td><font size="2px">Beach Location:</font></td>'
-                                + '<td><font size="2px">' + beach.beach + '</font></td></tr>'
-                                + '<tr><td><font size="2px">Episodes:</font></td><td>'
-                                + '<font size=2px">' + beach.episodes + '</font></td></tr>'
-                                + '<tr><td><font size="2px">Total volume:</font></td><td>'
-                                + '<font size=2px">' + numberWithCommas(unitVolume)
-                                + '</font></td></tr>'
-                                + '<tr><td><font size="2px">Total length:</font></td><td>'
-                                + '<font size=2px">' + numberWithCommas(unitLength)
-                                + '</font></td></tr>'
-                                + '<tr><td><font size="2px">Total cost:</font></td><td>'
-                                + '<font size=2px">' + numberWithCommas(unitCost)
-                                + '</font></td></tr>'
-                                + '<tr><td><font size="2px">Cost in 2014 dollars:</font></td><td>'
-                                + '<font size=2px">' + numberWithCommas(unit2010Cost)
-                                + '</font></td></tr>'
-                                + '</tr></table>'
-                                + '<a href="visual?state={{state}}&beach='
-                                + beach.beach + '" target="_top">Click here</a> '
-                                + 'for more information</div>';
+                            '<div style="height: 210px; width: 430px;">' +
+                            '<table cols="2" style="border-spacing: 10px 5px;">' +
+                            '<tr><td><font size="2px">Beach Location:</font></td>' +
+                            '<td><font size="2px">' + beach.beach +
+                            '</font></td></tr>' +
+                            '<tr><td><font size="2px">Episodes:</font></td><td>' +
+                            '<font size=2px">' + beach.episodes +
+                            '</font></td></tr>' +
+                            '<tr><td><font size="2px">Total volume:</font></td><td>' +
+                            '<font size=2px">' + numberWithCommas(
+                                unitVolume) +
+                            '</font></td></tr>' +
+                            '<tr><td><font size="2px">Total length:</font></td><td>' +
+                            '<font size=2px">' + numberWithCommas(
+                                unitLength) +
+                            '</font></td></tr>' +
+                            '<tr><td><font size="2px">Total cost:</font></td><td>' +
+                            '<font size=2px">' +
+                            numberWithCommas(unitCost) +
+                            '</font></td></tr>' +
+                            '<tr><td><font size="2px">Cost in 2014 dollars:</font></td><td>' +
+                            '<font size=2px">' + numberWithCommas(
+                                unit2010Cost) +
+                            '</font></td></tr>' + '</tr></table>' +
+                            '<a href="visual?state={{state}}&beach=' +
+                            beach.beach +
+                            '" target="_top">Click here</a> ' +
+                            'for more information</div>';
 
                         myMap.setZoom(10);
                         infoWindow.setContent(contentString);
@@ -322,8 +326,8 @@
                     }
                 });
             } else {
-
-                window.location = "visual?state={{state}}&beach=" + newLocation;
+                s
+                window.location = "visualization?state={{state}}&beach=" + newLocation;
             }
         } else {
             reDrawMap();
@@ -332,174 +336,162 @@
         alert(newLocation);
     }
 </script>
-<div class="container-fluid">
-    <div class="row">
-        <div class=".col-xs-10">
-            <div class=".col-xs-5">
-<h2>{{{fullStateName}}}</h2>
-<select name="beaches" id="beaches" onChange="moveMap(this.options[this.selectedIndex].value);">
-    <option value="{{{state}}}">Select a beach</option>
-    <option value="{{{state}}}">View the original map</option>
-</select>
-<br>
-<select name="states" id="states" onChange="if(this.value) window.location.href=this.value, '_top'">
-    <option value=".">Select another state</option>
-    <option value=".">Home</option>
-    <option value="/oneState?state=AL">Alabama</option>
-    <option value="/oneState?state=CA">California</option>
-    <option value="/oneState?state=CT">Connecticut</option>
-    <option value="/oneState?state=DE">Delaware</option>
-    <option value="/oneState?state=FL">Florida</option>
-    <option value="/oneState?state=GA">Georgia</option>
-    <option value="/oneState?state=LA">Louisiana</option>
-    <option value="/oneState?state=MA">Massachusetts</option>
-    <option value="/oneState?state=MD">Maryland</option>
-    <option value="/oneState?state=ME">Maine</option>
-    <option value="/oneState?state=MS">Mississippi</option>
-    <option value="/oneState?state=NC">North Carolina</option>
-    <option value="/oneState?state=NJ">New Jersey</option>
-    <option value="/oneState?state=NH">New Hampshire</option>
-    <option value="/oneState?state=NY">New York</option>
-    <option value="/oneState?state=RI">Rhode Island</option>
-    <option value="/oneState?state=SC">South Carolina</option>
-    <option value="/oneState?state=TX">Texas</option>
-    <option value="/oneState?state=VA">Virginia</option>
-    <option value="/oneState?state=WA">Washington</option>
-</select>
-            </div>
-<!--<table cols="3" id="totals" style="visibility: hidden;">-->
-<div class=".col-xs-5" align="center">
-            <div class="table-responsive" align="right">
-                <table id="totals">
-                    <tr>
-                        <td align="left">
-                            <b>State Totals:</b>
-                        </td>
-                        <td width="150px">
-                            <font size="2px">Episodes:</font>
-                        </td>
-                        <td align="left">
-                            <input type="text" id="total_episodes" class="textBox totals"
-                                   style="font-size: 12px; text-align: right;"
-                                   size="20" readonly/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <font size="2px">Cost:</font>
-                        </td>
-                        <td align="left">
-                            <input type="text" id="total_cost" class="textBox totals"
-                                   style="font-size: 12px; text-align: right;"
-                                   size="20" readonly/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <font size="2px">Cost (in 2014 dollars):</font>
-                        </td>
-                        <td align="left">
-                            <input type="text" id="total_2010cost" class="textBox totals"
-                                   style="font-size: 12px; text-align: right;"
-                                   size="20" readonly/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <font size="2px">Volume (cubic yards):</font>
-                        </td>
-                        <td align="left">
-                            <input type="text" id="total_volume" class="textBox totals"
-                                   style="font-size: 12px; text-align: right;"
-                                   size="20" readonly/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <font size="2px">Length (feet):</font>
-                        </td>
-                        <td align="left">
-                            <input type="text" id="total_length" class="textBox totals"
-                                   style="font-size: 12px; text-align: right;"
-                                   size="20" readonly/>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            </div>
+<center>
+    <h2 id="fullStateName">{{{fullStateName}}}</h2></center>
+
+<div class="row" align:center>
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+            <select name="beaches" id="beaches" onChange="moveMap(this.options[this.selectedIndex].value);">
+                <option value="{{{state}}}">Select a beach</option>
+                <option value="{{{state}}}">View the original map</option>
+            </select>
+            <p style="margin: 0;"></p>
+            <select name="states" id="states" onChange="if(this.value) window.location.href=this.value, '_top'">
+                <option value=".">Select another state</option>
+                <option value=".">Home</option>
+                <option value="/oneState?state=AL">Alabama</option>
+                <option value="/oneState?state=CA">California</option>
+                <option value="/oneState?state=CT">Connecticut</option>
+                <option value="/oneState?state=DE">Delaware</option>
+                <option value="/oneState?state=FL">Florida</option>
+                <option value="/oneState?state=GA">Georgia</option>
+                <option value="/oneState?state=LA">Louisiana</option>
+                <option value="/oneState?state=MA">Massachusetts</option>
+                <option value="/oneState?state=MD">Maryland</option>
+                <option value="/oneState?state=ME">Maine</option>
+                <option value="/oneState?state=MS">Mississippi</option>
+                <option value="/oneState?state=NC">North Carolina</option>
+                <option value="/oneState?state=NJ">New Jersey</option>
+                <option value="/oneState?state=NH">New Hampshire</option>
+                <option value="/oneState?state=NY">New York</option>
+                <option value="/oneState?state=RI">Rhode Island</option>
+                <option value="/oneState?state=SC">South Carolina</option>
+                <option value="/oneState?state=TX">Texas</option>
+                <option value="/oneState?state=VA">Virginia</option>
+                <option value="/oneState?state=WA">Washington</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <table class="table-responsive table-condensed" id="totals" align: "right">
+                <tr>
+                    <td align="left"><b>State Totals:</b></td>
+                    <td width="150px"><font size="2px">Episodes:</font></td>
+                    <td align="left">
+                        <input type="text" id="total_episodes" class="textBox totals" style="font-size: 12px; text-align: right;"
+                          size="20" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><font size="2px">Cost:</font> </td>
+                    <td align="left">
+                        <input type="text" id="total_cost" class="textBox totals" style="font-size: 12px; text-align: right;"
+                          size="20" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><font size="2px">Cost (in 2014 dollars):</font></td>
+                    <td align="left">
+                        <input type="text" id="total_2010cost" class="textBox totals" style="font-size: 12px; text-align: right;"
+                          size="20" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><font size="2px">Volume (cubic yards):</font></td>
+                    <td align="left">
+                        <input type="text" id="total_volume" class="textBox totals" style="font-size: 12px; text-align: right;"
+                          size="20" readonly/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><font size="2px">Length (feet):</font></td>
+                    <td align="left">
+                        <input type="text" id="total_length" class="textBox totals" style="font-size: 12px; text-align: right;"
+                          size="20" readonly/>
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </div>
-
 <!--Google Map-->
-        <div align="center">
-            <div id="map_canvas" class="map_canvas"></div>
-        </div>
+<div align="center">
+    <div id="map_canvas" class="map_canvas"></div>
+</div>
 <!--Google Map-->
 
+<div class="row">
+    <div class=".col-lg-10">
+        <div class=".col-lg-3" <!--style="margin-right:6%;" -->
+            <!--Heat Key-->
+            <div id="heatkey" class="eastkey" style="visibilty: hidden;">
 
-<!--Heat Key-->
-<div id="heatkey" class="eastkey" style="visibilty: hidden;">
+                <div id="minDiv" class="min">
+                    <input id="min" type="text" class="textBox" size="35" readonly style="font-weight: bold;"
+                    />
+                </div>
 
-    <div id="minDiv" class="min">
-        <input id="min" type="text" class="textBox" size="35" readonly style="font-weight: bold;"/>
-    </div>
+                <div id="maxDiv" class="max">
+                    <input id="max" type="text" class="textBox" size="35" readonly style="font-weight: bold;"
+                    />
+                </div>
 
-    <div id="maxDiv" class="max">
-        <input id="max" type="text" class="textBox" size="35" readonly style="font-weight: bold;"/>
-    </div>
+                <br/>
 
-    <br/>
+                <div class="heat-img">
+                    <img id="key_img" alt="heat_key" src="images/heat_key.png" style="visibility: hidden; border-width: 0px;"
+                    />
+                </div>
 
-    <div class="heat-img">
-        <img id="key_img" alt="heat_key" src="images/heat_key.png" style="visibility: hidden; border-width: 0px;"/>
-    </div>
-
-</div>
-<!--Heat Key-->
-
-<!--<table cols="4"  style="position: relative; right: -170px;">-->
-<!--Sort options-->
-<div class="container-fluid">
-    <div class="row">
-        <div class=".col-xs-12">
-            <div class="table-responsive">
-                <form name="radios" id="radios">
-                    <table>
-                        <tr>
-                            <td style="padding: 15px;">
-                                <b>Sort by:</b>
-                            </td>
-
-                            <td style="padding: 15px;">
-                                <label for="episodes">
-                                    <input type="radio" id="episodes" name="sort" value="Episodes"
-                                           checked onClick="reDrawMap();"/><br>Episodes
-                                </label>
-                            </td>
-
-                            <td style="padding: 15px;">
-                                <label for="cost">
-                                    <input type="radio" id="cost" name="sort" value="Cost"
-                                           onClick="reDrawMap();"/><br>Cost
-                                </label>
-                            </td>
-
-                            <td style="padding: 15px;">
-                                <label for="volume">
-                                    <input type="radio" id="volume" name="sort" value="Volume"
-                                           onClick="reDrawMap();"/><br>Volume (cubic yards)
-                                </label>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
             </div>
+            <!--Heat Key-->
+        </div>
+        <div class=".col-lg-7" style="margin-left:5%;">
+            <!--Sort options-->
+            <div class="container">
+                <div class="row">
+                    <div class=".col-sm-3" style="">
+                        <form name="radios" id="radios">
+                            <table class="table-responsive table-condensed">
+                                <tr>
+                                    <td style="padding: 2%;">
+                                        <b>Sort by:</b>
+                                    </td>
+
+                                    <td style="padding: 3%;">
+                                        <label for="episodes">
+                                            <input type="radio" id="episodes" name="sort" value="Episodes" checked onClick="reDrawMap();"
+                                            />
+                                            <br>Episodes
+                                        </label>
+                                    </td>
+
+                                    <td style="padding-left: 3%;">
+                                        <label for="cost">
+                                            <input type="radio" id="cost" name="sort" value="Cost" onClick="reDrawMap();" />
+                                            <br>Cost
+                                        </label>
+                                    </td>
+
+                                    <td style="padding:3%;">
+                                        <label for="volume">
+                                            <input type="radio" id="volume" name="sort" value="Volume" onClick="reDrawMap();"
+                                            />
+                                            <br>Volume (yd<sup>3</sup>)
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Sort options-->
         </div>
     </div>
 </div>
-<!-- Sort options-->

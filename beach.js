@@ -26,14 +26,14 @@ app.get('/', function(req,res) {
 app.get('/oneState', function(req,res) {
     var state = req.query.state; //get the state from the query string
     var fullStateName = generateOneStateData(state);
-    res.render('oneState', { state: state, fullStateName: fullStateName });     
+    res.render('oneState', { state: state, fullStateName: fullStateName });
 });
 
 app.get('/visual', function (req,res) {
-    var state = req.query.state; //get the state from the query string
-    var fullStateName = generateOneStateData(state);
+    var state = "SC"; //get the state from the query string
+    /*var fullStateName = generateOneStateData(state);*/
     var beach = req.query.beach;
-    res.render('visual', {state: state, fullStateName: fullStateName, beach:beach});
+    res.render('visual', {state: state, beach: beach});
 });
 
 app.get('/about', function(req,res) {
@@ -41,7 +41,7 @@ app.get('/about', function(req,res) {
 });
 
 /*404 catch-all handler (middleware)*/
-app.use(function(req,res,next) {
+app.use(function(req,res) {
     res.status(404);
     res.render('404');
 });

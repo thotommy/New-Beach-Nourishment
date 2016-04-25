@@ -1,4 +1,4 @@
-<!doctype html>	
+<!doctype html>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
 <script type="text/javascript" src="javascript/states.js"></script>
@@ -14,23 +14,23 @@
      */
 	var state = "{{state}}";
 	var fullStateName = "{{fullStateName}}";
-	 
+
     function loadResponse() {
         var beach = ("<?php echo $beach; ?>" == "All Beaches") ? -1 : "<?php echo $beach; ?>";
         var query = new google.visualization.Query(createDataUrl("Master"));
 
         var selectQuery = new google.visualization.Query(createDataUrl("Master"));
-        selectQuery.setQuery("Select A, C, F, G, H, I, J, L Where B = '" 
+        selectQuery.setQuery("Select A, C, F, G, H, I, J, L Where B = '"
                              + state + "'");
 
         if (beach == -1) {
-            query.setQuery("Select A, C, F, G, H, I, J, L Where B = '" + state 
+            query.setQuery("Select A, C, F, G, H, I, J, L Where B = '" + state
                            + "' Order by A")
         } else {
-            query.setQuery("Select A, C, F, G, H, I, J, L Where A = '" + beach 
+            query.setQuery("Select A, C, F, G, H, I, J, L Where A = '" + beach
                            + "' and B = '" + state + "' Order by A");
         }
-        
+
         query.send(createTable);
         selectQuery.send(createSelect);
     }
@@ -98,10 +98,10 @@
         var data       = response.getDataTable();
         var beaches    = new Array();
         var beachNames = data.getDistinctValues(0);
-        
+
         for (var i = 0; i < beachNames.length; i++) {
             var beach = trim(beachNames[i]);
-            if (beach.length > 0 && 
+            if (beach.length > 0 &&
                (beaches.indexOf(beach) == -1)) {
                 beaches.push(beach);
                 var select = document.getElementById('perpage');
@@ -109,7 +109,7 @@
 
                 option.id    = beach;
                 option.text  = beach;
-                option.value = "table?state=<?php echo $state; ?>&beach=" + 
+                option.value = "table?state=<?php echo $state; ?>&beach=" +
                                beach;
                 select.appendChild(option);
             }
@@ -146,24 +146,24 @@
             }
         }
 
-        document.getElementById('total_episodes').value = 
+        document.getElementById('total_episodes').value =
                                            numberWithCommas(totals.episodes);
-        document.getElementById('total_cost').value = '$' 
+        document.getElementById('total_cost').value = '$'
                                            + numberWithCommas(
                                            Math.round(totals.cost));
-        document.getElementById('total_2010cost').value = '$' 
+        document.getElementById('total_2010cost').value = '$'
                                            + numberWithCommas(
                                            Math.round(totals.cost2010));
-        document.getElementById('total_volume').value = 
+        document.getElementById('total_volume').value =
                                            numberWithCommas(totals.volume);
-        document.getElementById('total_length').value = 
+        document.getElementById('total_length').value =
                                            numberWithCommas(totals.len);
         document.getElementById('totals').style.visibility = 'visible';
     }
 //-->
 </script>
 
-  <div id="body_div" class="body-container drop-shadow"> 
+  <div id="body_div" class="body-container drop-shadow">
     <div id="content">
       <div class="section-title">
         <div class="content-left">
@@ -199,7 +199,7 @@
               <tr>
                 <td>
                   <select id="perpage" onChange="window.open(
-                                       this.options[this.selectedIndex].value, 
+                                       this.options[this.selectedIndex].value,
                                        '_top');">
                     <option value="visualization.php?state=<?php echo $state; ?>?beach=<?php echo $beach; ?>">
                       Select another beach
@@ -293,7 +293,7 @@
                   <font size="2px">Episodes:</font>
                 </td>
                 <td align="left">
-                  <input type="text" id="total_episodes" class="textBox totals" 
+                  <input type="text" id="total_episodes" class="textBox totals"
                          size="15" readonly />
                 </td>
               </tr>
@@ -304,8 +304,8 @@
                   <font size="2px">Cost:</font>
                 </td>
                 <td align="left">
-                  <input type="text" id="total_cost" class="textBox totals" 
-                         style="font-size: 12px; text-align: right;" 
+                  <input type="text" id="total_cost" class="textBox totals"
+                         style="font-size: 12px; text-align: right;"
                          size="15" readonly />
                 </td>
               </tr>
@@ -316,8 +316,8 @@
                   <font size="2px">Cost (in 2014 dollars):</font>
                 </td>
                 <td align="left">
-                  <input type="text" id="total_2010cost" class="textBox totals" 
-                         style="font-size: 12px; text-align: right;" 
+                  <input type="text" id="total_2010cost" class="textBox totals"
+                         style="font-size: 12px; text-align: right;"
                          size="15" readonly />
                 </td>
               </tr>
@@ -328,8 +328,8 @@
                   <font size="2px">Volume (cubic yards):</font>
                 </td>
                 <td align="left">
-                  <input type="text" id="total_volume" class="textBox totals" 
-                         style="font-size: 12px; text-align: right;" 
+                  <input type="text" id="total_volume" class="textBox totals"
+                         style="font-size: 12px; text-align: right;"
                          size="15" readonly />
                 </td>
               </tr>
@@ -340,8 +340,8 @@
                   <font size="2px">Length (feet):</font>
                 </td>
                 <td align="left">
-                  <input type="text" id="total_length" class="textBox totals" 
-                         style="font-size: 12px; text-align: right;" 
+                  <input type="text" id="total_length" class="textBox totals"
+                         style="font-size: 12px; text-align: right;"
                          size="15" readonly />
                 </td>
               </tr>
@@ -354,7 +354,7 @@
                id="data_table">
         </table>
       </div>
-      <table cols="3" style="border-spacing: 10px 5px;" width="75%" 
+      <table cols="3" style="border-spacing: 10px 5px;" width="75%"
              align="center">
         <tr>
           <td>

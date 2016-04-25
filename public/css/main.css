@@ -1,9 +1,24 @@
+/*SVG Mapi Part of the Home Page*/
 svg {height:45vw; }
-path{
+path {
   fill:#004d99;
   transition: .6s fill;
 }
-path:hover {fill: #b3d9ff;}
+
+path.beachState {
+  fill:#009E66;
+  transition: .6s fill;
+}
+path.beachState:hover {fill: #b3d9ff;
+}
+/*The select tag for the Home Page*/
+#homeSel {
+  width: 100%;
+  padding: 5%;
+  border: none;
+  color: #7F7F7F;
+  font-weight: bold;
+}
 
 .facebook-logo {
   float: right;
@@ -13,7 +28,7 @@ path:hover {fill: #b3d9ff;}
   float: right;
 }
 
-/*Map Canvas*/
+/*Map Canvas for the Google Map*/
 
 #map_canvas {
   display: block;
@@ -100,9 +115,9 @@ path:hover {fill: #b3d9ff;}
   top: -40px;
 }
 
-.space {
+/*.space {
   height: 10px;
-}
+}*/
 
 .stats{
   margin: 0px;
@@ -129,7 +144,28 @@ path:hover {fill: #b3d9ff;}
   padding-bottom: 15px;
 }
 
+/*Select tag for results Page*/
+#beaches {
+  width:80%;
+  padding: 1%;
+  border: none;
+  color: #7F7F7F;
+  font-weight: bold;
+    /*margin-left: 20%;*/
+  float: center;
+}
 
+/*Select Tag for the Results Page*/
+#states {
+  width:80%;
+  padding: 1%;
+  border: none;
+  color: #7F7F7F;
+  font-weight: bold;
+  /*margin-left: 20%;*/
+  float: center;
+
+}
 /*About page in Beach Nourishment*/
 
 .developer {
