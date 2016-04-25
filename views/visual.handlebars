@@ -178,13 +178,22 @@
                 alert("Do I get into this If statment after the loop?");
                 var select = document.getElementById('perpage');
                 var option = document.createElement('option');
-
+                alert("HIIIII");
                 option.id = beach;
                 option.text = beach;
                 option.value =
                     "visual?state={{state}}&beach=" +
                     beach.beach;
-                select.appendChild(option);
+
+                alert("HII2");
+                if(select) {
+                   alert("Then it exists!");
+                } else {
+                    alert("Then nothing there bro");
+                }
+                select.add(option);
+                
+                alert("HII3");
             }
             alert("What is the option.id?" + option.id);
             if (beach == "{{beach}}") {
@@ -302,10 +311,10 @@ if ($state == "") {
                                         <select id="perpage" onChange="window.open(
                                        this.options[this.selectedIndex].value,
                                        '_top');">
-                                            <option value="visualization.php?state=<?php echo $state; ?>?beach=<?php echo $beach; ?>">
+                                       <option value="visual?state={{state}}&beach={{beach}}">
                                                 Select another beach
                                             </option>
-                                            <option value="visualization.php?state=<?php echo $state; ?>">
+                                            <option value="visual?state={{state}}">
                                                 All
                                             </option>
                                         </select>
