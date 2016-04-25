@@ -181,7 +181,7 @@ function createMarkers(myMap, beach, state, sort, maxArray) {
                 + '<font size=2px">' + numberWithCommas(unit2010Cost)
                 + '</font></td></tr>'
                 + '</tr></table>'
-                + '<a href="/visual?' + state + '&beach='
+                + '<a href="/visual?state=' + state + '&beach='
                 + beach.beach + '" target="_top">Click here</a> '
                 + 'for more information</div>';
 
