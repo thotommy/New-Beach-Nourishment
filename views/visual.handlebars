@@ -3,43 +3,28 @@
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
 <script type="text/javascript">
-
     /** Determines how you're going to order the graphs by. */
     var orderBy = 'date';
-
-    /*google.load('visualization', '1.0', {'packages' : ['corechart']});
-    google.setOnLoadCallback(createPageElements);*/
     google.load('visualization', '1.0', {
         'packages': ['corechart'],
         callback: createPageElements
     });
-    //alert("I am in visualization. " + "beach= " + "{{beach}}" + "state=" + "{{state}}");
     /**
      * Creates the various page elements from the data recieved from the query.
      * This function is called as soon as Google Visualization libraries are
      * loaded.
      */
     function createPageElements() {
-        //alert("In the CreatePageElements function");
-        alert("beach = " + "{{beach}}");
         alert("state is " + "{{state}}");
-        /*var state = "SC";
-        var beach = ("Debidue" = "All Beaches") ? -1 : "Debidue";
-        var costQuery = new google.visualization.Query(createDataUrl("Master"));
-        var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
-        var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
-*/
+        alert("beach is " + "{{beach}}");
         var state = "{{state}}";
-        alert("second state is " + "{{state}}");
         var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
         totalsQuery.setQuery("Select A, H, I, J, L Where B = '" + state +
             "' Order by A");
-        alert("IT IS BROKEN HERE BEFORE THE getTotalsAndCreateSelect");
         totalsQuery.send(getTotalsAndCreateSelect);
-        alert("Did I go past the totalsQuery.send(getTotalsAndCreateSelect)?");
         if (beach == -1) {
             costQuery.setQuery("Select C, J Where B = '" + state + "'" +
                 " Order By C");
@@ -64,7 +49,7 @@
      * @param response the response that is returned from the query
      */
     function createCostVisualization(response) {
-        alert("In the createCostVisualization function");
+        //alert("In the createCostVisualization function");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                 response.getDetailedMessage());
@@ -109,7 +94,7 @@
      * @param response the response that is returned from the query
      */
     function createVolumeVisualization(response) {
-        alert("In the createVolumeVisualization function");
+        //alert("In the createVolumeVisualization function");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                 response.getDetailedMessage());
@@ -154,7 +139,7 @@
      */
     function getTotalsAndCreateSelect(response) {
         //alert("What is the response it is " + response);
-        alert("In the getTotalsAndCreateSelect function");
+        //alert("In the getTotalsAndCreateSelect function");
         var data = response.getDataTable();
         //alert("the data is in getTotalsAndCreateSelect" + data);
         var beaches = new Array();
@@ -169,18 +154,14 @@
         var volumeColumn = lengthColumn + 1;
         var costColumn = volumeColumn + 1;
         var cost2010Column = costColumn + 1;
-        //alert("About to hit the for loop in the getTotalsAndCreateSelect function");
-        //alert("Print the data.getNumberOfRows()" + data.getNumberOfRows());
+
         for (var i = 0; i < data.getNumberOfRows(); i++) {
-            //alert("In the for loop incremeneting i? i is " + i);
             beach = trim(data.getValue(i, 0));
-            //alert("IN the for loop printing out the beach " + beach);
+
             if (beach.length > 0 && (beaches.indexOf(beach) == -1)) {
                 beaches.push(beach);
-                //alert("Do I get into this If statment after the loop?");
                 var select = document.getElementById('perpage');
                 var option = document.createElement('option');
-                //alert("HIIIII");
                 option.id = beach;
                 option.text = beach;
                 option.value =
@@ -194,10 +175,10 @@
                     alert("Then nothing there bro");
                 }
                 select.add(option);
-                
+
                 alert("HII3");*/
             }
-            //alert("What is the option.id?" + option.id);
+
             if (beach == "{{beach}}") {
                 totals.episodes++;
                 totals.cost += data.getValue(i, costColumn);
@@ -236,7 +217,7 @@
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
 
-        if ('<?php echo $beach; ?>' == 'All Beaches') {
+        if ('{{beach}}' == 'All Beaches') {
             if (orderBy == 'date') {
                 costQuery.setQuery("Select C, J Order by C")
                 volumeQuery.setQuery("Select C, I Order by C");
@@ -247,17 +228,17 @@
         } else {
             if (orderBy == 'date') {
                 costQuery.setQuery(
-                    "Select C, J Where A = '<?php echo $beach; ?>'" +
+                    "Select C, J Where A = '{{beach}}'" +
                     " Order by C");
                 volumeQuery.setQuery(
-                    "Select C, I Where A = '<?php echo $beach; ?>'" +
+                    "Select C, I Where A = '{{beach}}'" +
                     " Order by C");
             } else {
                 costQuery.setQuery(
-                    "Select C, J Where A = '<?php echo $beach; ?>'" +
+                    "Select C, J Where A = '{{beach}}'" +
                     " Order by J");
                 volumeQuery.setQuery(
-                    "Select C, I Where A = '<?php echo $beach; ?>'" +
+                    "Select C, I Where A = '{{beach}}'" +
                     " Order by I");
             }
         }
@@ -266,237 +247,171 @@
         volumeQuery.send(createVolumeVisualization);
     }
 </script>
-        <div id="body_div" class="body-container drop-shadow">
-            <div id="content">
-                <div class="section-title">
-                    <div class="content-left">
-                        <img src="images/banner.png" style="position: relative; top: -10px;" />
-                    </div>
-                    <div class="content-right">
-                        <table id="logos-table" cols="2" align="center" style="border-spacing: 0px 0px;"
-                          cellspacing="10px">
-                            <tr>
-                                <td>
-                                    <a href="http://www.facebook.com/pages/Program-for-the-Study-of-Developed-Shorelines/178055929458"
-                                      target="new_">
-                                        <div class="facebook-logo"></div>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="http://www.wcu.edu" target="new">
-                                        <div class="wcu-logo"></div>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <hr class="h1" />
-                <table cols="2">
-                    <tr>
-                        <td width="400px">
-                            <table cols="1">
-                                <tr>
-                                    <td>
-                                        <select id="perpage" onChange="window.open(
+        <div class="clear"></div>
+        <table cols="2">
+            <tr>
+                <td width="400px">
+                    <table cols="1">
+                        <tr>
+                            <td>
+                                <select id="perpage" onChange="window.open(
                                        this.options[this.selectedIndex].value,
                                        '_top');">
-                                       <option value="visual?state={{state}}&beach={{beach}}">
-                                                Select another beach
-                                            </option>
-                                            <option value="visual?state={{state}}">
-                                                All
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="states" id="states" onChange="window.open(this.options[this.selectedIndex].
+                                    <option value="visual?state={{state}}\&beach={{beach}}">
+                                        Select another beach
+                                    </option>
+                                    <option value="visual?state={{state}}">
+                                        All
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="states" id="states" onChange="window.open(this.options[this.selectedIndex].
                                                          value, '_top');">
-                                            <option value=".">
-                                                Select another state
-                                            </option>
-                                            <option value=".">
-                                                Home
-                                            </option>
-                                            <option value="results.php?state=AL">
-                                                Alabama
-                                            </option>
-                                            <option value="results.php?state=CA">
-                                                California
-                                            </option>
-                                            <option value="results.php?state=CT">
-                                                Connecticut
-                                            </option>
-                                            <option value="results.php?state=DE">
-                                                Delaware
-                                            </option>
-                                            <option value="results.php?state=FL">
-                                                Florida
-                                            </option>
-                                            <option value="results.php?state=GA">
-                                                Georgia
-                                            </option>
-                                            <option value="results.php?state=LA">
-                                                Louisiana
-                                            </option>
-                                            <option value="results.php?state=MA">
-                                                Massachusetts
-                                            </option>
-                                            <option value="results.php?state=MD">
-                                                Maryland
-                                            </option>
-                                            <option value="results.php?state=ME">
-                                                Maine
-                                            </option>
-                                            <option value="results.php?state=MS">
-                                                Mississippi
-                                            </option>
-                                            <option value="results.php?state=NC">
-                                                North Carolina
-                                            </option>
-                                            <option value="results.php?state=NJ">
-                                                New Jersey
-                                            </option>
-                                            <option value="results.php?state=NY">
-                                                New York
-                                            </option>
-                                            <option value="results.php?state=RI">
-                                                Rhode Island
-                                            </option>
-                                            <option value="results.php?state=SC">
-                                                South Carolina
-                                            </option>
-                                            <option value="results.php?state=TX">
-                                                Texas
-                                            </option>
-                                            <option value="results.php?state=VA">
-                                                Virginia
-                                            </option>
-                                            <option value="results.php?state=WA">
-                                                Washington
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="520px" align="right">
-                            <table cols="3" id="totals" style="visibility: hidden;">
-                                <tr>
-                                    <td align="right">
-                                        <b>Beach Totals:</b>
-                                    </td>
-                                    <td width="150px">
-                                        <font size="2px">Episodes:</font>
-                                    </td>
-                                    <td align="left">
-                                        <input type="text" id="total_episodes" class="textBox totals" style="font-size: 12px; text-align: right;"
-                                          size="15" readonly />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <font size="2px">Cost:</font>
-                                    </td>
-                                    <td align="left">
-                                        <input type="text" id="total_cost" class="textBox totals" style="font-size: 12px; text-align: right;"
-                                          size="15" readonly />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <font size="2px">Cost (in 2014 dollars):</font>
-                                    </td>
-                                    <td align="left">
-                                        <input type="text" id="total_2010cost" class="textBox totals" style="font-size: 12px; text-align: right;"
-                                          size="15" readonly />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <font size="2px">Volume (cubic yards):</font>
-                                    </td>
-                                    <td align="left">
-                                        <input type="text" id="total_volume" class="textBox totals" style="font-size: 12px; text-align: right;"
-                                          size="15" readonly />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        <font size="2px">Length (feet):</font>
-                                    </td>
-                                    <td align="left">
-                                        <input type="text" id="total_length" class="textBox totals" style="font-size: 12px; text-align: right;"
-                                          size="15" readonly />
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-                <table cols="1" align="center">
-                    <tr>
-                        <td>
-                            <div id="map_canvas" style="height: 430px;">
-                                <h2 style="position: relative; top: -28px;">
-                            <center><?php echo $beach; ?>, <?php echo $state; ?></center>
-                        </h2>
-                                <div id="cost_canvas" style="z-index: 1;"></div>
-                                <div id="volume_canvas" style="z-index: 1;"></div>
-                                <div style="z-index: 10; position: relative; top: -30px;">
-                                    <table cols="2" style="position: relative; right: -13px;">
-                                        <tr>
-                                            <td>
-                                                Sort by:
-                                            </td>
-                                            <form name="selects">
-                                                <td>
-                                                    <label for="date">
-                                                        <input type="radio" id="date" name="sortby" value="date" checked onClick="redrawVisualization(this.value);"
-                                                        />Date
-                                                    </label>
-                                                    <label for="cv">
-                                                        <input type="radio" id="cv" name="sortby" value="cv" onClick="redrawVisualization(this.value);"
-                                                        /> Cost/Volume
-                                                    </label>
-                                                </td>
-                                            </form>
-                                        </tr>
-                                    </table>
-                                    <a href="beach_tables.php?state=<?php echo $state; ?>&beach=<?php echo $beach; ?>">View</a>                                    the table representation of this graph
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <table cols="2" style="border-spacing: 10px 5px;" width="50%" align="center">
-                    <tr>
-                        <td>
-                            <a href="results.php?state=<?php echo $state; ?>">Return</a>                            to the state map page
-                        </td>
-                        <td>
-                            <a href=".">Return</a> to the Home page
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        </div>
-        </body>
+                                    <option value=".">
+                                        Select another state
+                                    </option>
+                                    <option value=".">
+                                        Home
+                                    </option>
+                                    <option value="/oneState?state=AL">Alabama</option>
+                                    <option value="/oneState?state=CA">California</option>
+                                    <option value="/oneState?state=CT">Connecticut</option>
+                                    <option value="/oneState?state=DE">Delaware</option>
+                                    <option value="/oneState?state=FL">Florida</option>
+                                    <option value="/oneState?state=GA">Georgia</option>
+                                    <option value="/oneState?state=LA">Louisiana</option>
+                                    <option value="/oneState?state=MA">Massachusetts</option>
+                                    <option value="/oneState?state=MD">Maryland</option>
+                                    <option value="/oneState?state=ME">Maine</option>
+                                    <option value="/oneState?state=MS">Mississippi</option>
+                                    <option value="/oneState?state=NC">North Carolina</option>
+                                    <option value="/oneState?state=NJ">New Jersey</option>
+                                    <option value="/oneState?state=NH">New Hampshire</option>
+                                    <option value="/oneState?state=NY">New York</option>
+                                    <option value="/oneState?state=RI">Rhode Island</option>
+                                    <option value="/oneState?state=SC">South Carolina</option>
+                                    <option value="/oneState?state=TX">Texas</option>
+                                    <option value="/oneState?state=VA">Virginia</option>
+                                    <option value="/oneState?state=WA">Washington</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="520px" align="right">
 
-        </html>
+                    <table cols="3" id="totals" style="visibility: hidden;">
+                        <tr>
+                            <td align="right"><b>Beach Totals:</b></td>
+                            <td width="150px"><font size="2px">Episodes:</font></td>
+                            <td align="left">
+                                <input type="text" id="total_episodes" class="textBox totals"
+                                style="font-size: 12px; text-align: right;"
+                                    size="15" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <font size="2px">Cost:</font>
+                            </td>
+                            <td align="left">
+                                <input type="text" id="total_cost" class="textBox totals" style="font-size: 12px; text-align: right;"
+                                    size="15" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <font size="2px">Cost (in 2014 dollars):</font>
+                            </td>
+                            <td align="left">
+                                <input type="text" id="total_2010cost" class="textBox totals" style="font-size: 12px; text-align: right;"
+                                    size="15" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <font size="2px">Volume (cubic yards):</font>
+                            </td>
+                            <td align="left">
+                                <input type="text" id="total_volume" class="textBox totals" style="font-size: 12px; text-align: right;"
+                                    size="15" readonly />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <font size="2px">Length (feet):</font>
+                            </td>
+                            <td align="left">
+                                <input type="text" id="total_length" class="textBox totals" style="font-size: 12px; text-align: right;"
+                                    size="15" readonly />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table cols="1" align="center">
+            <tr>
+                <td>
+                    <div id="map_canvas" style="height: 430px;">
+                        <h2 style="position: relative; top: -28px;">
+                            <center>{{{beach}}}, {{{state}}}</center>
+                        </h2>
+                        <div id="cost_canvas" style="z-index: 1;"></div>
+                        <div id="volume_canvas" style="z-index: 1;"></div>
+                        <div style="z-index: 10; position: relative; top: -30px;">
+                            <table cols="2" style="position: relative; right: -13px;">
+                                <tr>
+                                    <td>
+                                        Sort by:
+                                    </td>
+                                    <form name="selects">
+                                        <td>
+                                            <label for="date">
+                                                <input type="radio" id="date" name="sortby" value="date" checked onClick="redrawVisualization(this.value);"
+                                                />Date
+                                            </label>
+                                            <label for="cv">
+                                                <input type="radio" id="cv" name="sortby" value="cv" onClick="redrawVisualization(this.value);"
+                                                /> Cost/Volume
+                                            </label>
+                                        </td>
+                                    </form>
+                                </tr>
+                            </table>
+                            <a href="beach_tables.php?state={{state}}&beach={{beach}}">View</a>
+                            the table representation of this graph
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table cols="2" style="border-spacing: 10px 5px;" width="50%" align="center">
+            <tr>
+                <td>
+                    <a href="oneState?state={{state}}">Return</a> to the state map
+                    page
+                </td>
+                <td>
+                    <a href="/">Return</a> to the Home page
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
