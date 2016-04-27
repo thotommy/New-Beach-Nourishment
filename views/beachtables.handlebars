@@ -16,7 +16,7 @@
 	var fullStateName = "{{fullStateName}}";
 
     function loadResponse() {
-        var beach = ("<?php echo $beach; ?>" == "All Beaches") ? -1 : "<?php echo $beach; ?>";
+        var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var query = new google.visualization.Query(createDataUrl("Master"));
 
         var selectQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -109,7 +109,7 @@
 
                 option.id    = beach;
                 option.text  = beach;
-                option.value = "table?state=<?php echo $state; ?>&beach=" +
+                option.value = "table?state={{state}}&beach=" +
                                beach;
                 select.appendChild(option);
             }
@@ -137,7 +137,7 @@
 
         for (var i = 0; i < data.getNumberOfRows(); i++) {
             beach = trim(data.getValue(i, 0));
-            if (beach == '<?php echo $beach; ?>') {
+            if (beach == '{{beach}}') {
                 totals.episodes++;
                 totals.cost     += data.getValue(i, costColumn);
                 totals.cost2010 += data.getValue(i, cost2010Column);
@@ -193,7 +193,7 @@
             <table cols="1">
               <tr>
                 <td>
-                  <h3><?php echo $beach; ?>, <?php echo $state; ?></h3>
+                  <h3>{{beach}}, {{state}}</h3>
                 </td>
               </tr>
               <tr>
@@ -201,10 +201,10 @@
                   <select id="perpage" onChange="window.open(
                                        this.options[this.selectedIndex].value,
                                        '_top');">
-                    <option value="visualization.php?state=<?php echo $state; ?>?beach=<?php echo $beach; ?>">
+                    <option value="visual?state={{state}}?beach={{beach}}">
                       Select another beach
                     </option>
-                    <option value="visualization.php?state=<?php echo $state; ?>">
+                    <option value="visual?state={{state}}">
                       All
                     </option>
                   </select>
@@ -221,63 +221,26 @@
                     <option value=".">
                       Home
                     </option>
-                    <option value="results.php?state=AL">
-                      Alabama
-                    </option>
-                    <option value="results.php?state=CA">
-                      California
-                    </option>
-                    <option value="results.php?state=CT">
-                      Connecticut
-                    </option>
-                    <option value="results.php?state=DE">
-                      Delaware
-                    </option>
-                    <option value="results.php?state=FL">
-                      Florida
-                    </option>
-                    <option value="results.php?state=GA">
-                      Georgia
-                    </option>
-                    <option value="results.php?state=LA">
-                      Louisiana
-                    </option>
-                    <option value="results.php?state=MA">
-                      Massachusetts
-                    </option>
-                    <option value="results.php?state=MD">
-                      Maryland
-                    </option>
-                    <option value="results.php?state=ME">
-                      Maine
-                    </option>
-                    <option value="results.php?state=MS">
-                      Mississippi
-                    </option>
-                    <option value="results.php?state=NC">
-                      North Carolina
-                    </option>
-                    <option value="results.php?state=NJ">
-                      New Jersey
-                    </option>
-                    <option value="results.php?state=NY">
-                      New York
-                    </option>
-                    <option value="results.php?state=RI">
-                      Rhode Island
-                    </option>
-                    <option value="results.php?state=SC">
-                      South Carolina
-                    </option>
-                    <option value="results.php?state=TX">
-                      Texas
-                    </option>
-                    <option value="results.php?state=VA">
-                      Virginia
-                    </option>
-                    <option value="results.php?state=WA">
-                      Washington
-                    </option>
+                    <option value="/oneState?state=AL">Alabama</option>
+                    <option value="/oneState?state=CA">California</option>
+                    <option value="/oneState?state=CT">Connecticut</option>
+                    <option value="/oneState?state=DE">Delaware</option>
+                    <option value="/oneState?state=FL">Florida</option>
+                    <option value="/oneState?state=GA">Georgia</option>
+                    <option value="/oneState?state=LA">Louisiana</option>
+                    <option value="/oneState?state=MA">Massachusetts</option>
+                    <option value="/oneState?state=MD">Maryland</option>
+                    <option value="/oneState?state=ME">Maine</option>
+                    <option value="/oneState?state=MS">Mississippi</option>
+                    <option value="/oneState?state=NC">North Carolina</option>
+                    <option value="/oneState?state=NJ">New Jersey</option>
+                    <option value="/oneState?state=NH">New Hampshire</option>
+                    <option value="/oneState?state=NY">New York</option>
+                    <option value="/oneState?state=RI">Rhode Island</option>
+                    <option value="/oneState?state=SC">South Carolina</option>
+                    <option value="/oneState?state=TX">Texas</option>
+                    <option value="/oneState?state=VA">Virginia</option>
+                    <option value="/oneState?state=WA">Washington</option>
                   </select>
                 </td>
               </tr>
@@ -358,11 +321,11 @@
              align="center">
         <tr>
           <td>
-            <a href="visualization.php?state=<?php echo $state; ?>&beach=<?php echo $beach; ?>">Return</a>
+            <a href="visual?state={{state}}&beach={{beach}}">Return</a>
             to the previous page
           </td>
           <td>
-            <a href="results.php?state=<?php echo $state; ?>">Return</a>
+            <a href="oneState?state={{state}}">Return</a>
             to the State Map page
           </td>
           <td>

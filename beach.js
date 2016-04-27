@@ -36,6 +36,13 @@ app.get('/visual', function (req,res) {
     res.render('visual', {state: state, beach: beach});
 });
 
+app.get('/beachtables', function (req,res) {
+    var state = req.query.state; //get the state from the query string
+    /*var fullStateName = generateOneStateData(state);*/
+    var beach = req.query.beach;
+    res.render('beachtables', {state: state, beach: beach});
+});
+
 app.get('/about', function(req,res) {
     res.render('about');
 });
