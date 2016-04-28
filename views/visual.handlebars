@@ -21,6 +21,7 @@
         //alert("beach is " + "{{beach}}");
         var state = "{{state}}";
         var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
+        alert("beach is " + beach);
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -75,7 +76,7 @@
         visualization.draw(data, {
             title: 'Cost',
             titleTextStyle: {
-                fontSize: 16,
+                fontSize: 16,//16
                 fontName: "san-serif"
             },
             legend: 'none',
@@ -176,7 +177,7 @@
 
                 alert("HII3");*/
             }
-
+            //TODO RIGHT HERE!!!!!!!!!!!!!!!! ALl beaches total
             if (beach == '{{beach}}') {
                 totals.episodes++;
                 totals.cost += data.getValue(i, costColumn);
@@ -274,7 +275,7 @@
             <!--"window.open(
                          this.options[this.selectedIndex].value,
                          '_top');"-->
-            <select id="perpage" onChange="if(this.value) window.location.href=this.value, '_top'">
+            <select id="perpage" onChange="if(this.value) window.location.href=this.options[this.selectedIndex].value, '_top' ">
                 <option value="visual?state={{state}}&beach={{beach}}">
                     Select another beach
                 </option>
@@ -357,9 +358,7 @@
         </div>
     </div>
 </div>
-<br />
-<br />
-<br />
+<br /><br /><br />
 
 <!--<div >USED TO HAVE style="z-index: 10; position: relative; top: -30px;"</div>-->
 <center>
@@ -394,9 +393,9 @@
             </div>
         </div>
     </div>
-
 </center>
 
+<center>
 <div class="row">
     <div class="col-md-12">
         <div id="map_canvas" style="height: 430px;">
@@ -410,3 +409,4 @@
         <br />
     </div>
 </div>
+</center>

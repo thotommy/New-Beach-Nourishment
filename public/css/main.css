@@ -15,7 +15,9 @@ path.beachState:hover {
     fill: #b3d9ff;
 }
 
-
+.nav navbar-nav li.active {
+  opacity: 1;
+}
 /*The select tag for the Home Page*/
 #homeSel {
   width: 100%;
