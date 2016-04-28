@@ -20,17 +20,14 @@
         //alert("state is " + "{{state}}");
         //alert("beach is " + "{{beach}}");
         var state = "{{state}}";
-<<<<<<< HEAD
 		var beach = "{{beach}}";
 		if (beach == "All_Beaches") {
 			alert("Tripped");
 			beach = -1;
 			alert(beach);
 		}
-=======
-        var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
+        //var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         alert("beach is " + beach);
->>>>>>> 29a1c8ef8ad222a39c196af07c02ddb04120ad3e
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
