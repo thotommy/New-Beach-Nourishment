@@ -20,7 +20,12 @@
         //alert("state is " + "{{state}}");
         //alert("beach is " + "{{beach}}");
         var state = "{{state}}";
-        var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
+		var beach = "{{beach}}";
+		if (beach == "All_Beaches") {
+			alert("Tripped");
+			beach = -1;
+			alert(beach);
+		}
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -215,7 +220,7 @@
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
 
-        if ('{{beach}}' == 'All Beaches') {
+        if ('{{beach}}' == 'All_Beaches') {
             if (orderBy == 'date') {
                 costQuery.setQuery("Select C, J Order by C")
                 volumeQuery.setQuery("Select C, I Order by C");
@@ -278,7 +283,7 @@
                 <option value="visual?state={{state}}&beach={{beach}}">
                     Select another beach
                 </option>
-                <option value="visual?state={{state}}">All</option>
+                <option value="visual?state={{state}}&beach=All_Beaches">All</option>
             </select>
             <br />
             <select name="states" id="states" onChange="window.open(this.options[this.selectedIndex].
