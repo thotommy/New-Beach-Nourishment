@@ -247,22 +247,36 @@
         costQuery.send(createCostVisualization);
         volumeQuery.send(createVolumeVisualization);
     }
-    $(window).resize(function(){
-        createCostVisualization(response);
-        createVolumeVisualization(response);
-        redrawVisualization(sortBy);
-    });
-</script>
-<center>
-    <h2>{{{beach}}}, {{{state}}}</h2></center>
 
-<div class="row" align:center>
+</script>
+    <center><h2>{{{beach}}}, {{{state}}}</h2></center>
+
+    <div class="row" align="center">
+        <div class="col-sm-12">
+
+            <div class="col-sm-6">
+                <a href="oneState?state={{state}}">Return</a> to the state map page
+            </div>
+
+            <div class="col-sm-6">
+                <a href=".">Return</a> to the Home page
+
+            </div>
+
+            <!--This is the end of the two pages link-->
+
+        </div>
+    </div>
+
+<br /><br />
+<div class="row">
     <div class="col-sm-12">
         <div class="col-sm-6">
             <!--This is the two select elements for the cost and volume-->
-            <select id="perpage" onChange="window.open(
+            <!--"window.open(
                          this.options[this.selectedIndex].value,
-                         '_top');">
+                         '_top');"-->
+            <select id="perpage" onChange="if(this.value) window.location.href=this.value, '_top'">
                 <option value="visual?state={{state}}&beach={{beach}}">
                     Select another beach
                 </option>
@@ -393,19 +407,23 @@
                 <div id="volume_canvas" style="z-index: 1;"></div>
             </div>
         </div>
+        <br />
     </div>
 </div>
-<br />
 
-<table cols="3" style="border-spacing: 10px 5px;" width="75%" align="center">
-    <tr>
-        <td>
+<!--
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="col-xs-6">
                 <a href="oneState?state={{state}}">Return</a> to the state map page
-        </td>
-        <td>
+            </div>
+            <div class="col-xs-6">
                 <a href=".">Return</a> to the Home page
-            <!--This is the end of the two pages link-->
-        </td>
 
-    </tr>
-</table>
+            </div>
+
+        </div>
+    </div>
+</div>-->

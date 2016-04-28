@@ -112,7 +112,7 @@
 
                 option.id = beach;
                 option.text = beach;
-                option.value = "table?state={{state}}&beach=" +
+                option.value = "beachtables?state={{state}}&beach=" +
                     beach;
                 select.appendChild(option);
             }
@@ -171,9 +171,8 @@
     <div class="col-sm-12">
         <div class="col-sm-6">
             <!--This is the two select elements for beach and state-->
-            <select id="perpage" onChange="window.open(
-                                       this.options[this.selectedIndex].value,
-                                       '_top');">
+
+            <select id="perpage" onChange="if(this.value) window.location.href=this.value, '_top'">
                 <option value="visual?state={{state}}?beach={{beach}}">
                     Select another beach
                 </option>
