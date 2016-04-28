@@ -15,7 +15,9 @@ path.beachState:hover {
     fill: #b3d9ff;
 }
 
-
+.nav navbar-nav li.active {
+  opacity: 1;
+}
 /*The select tag for the Home Page*/
 #homeSel {
   width: 100%;
@@ -49,7 +51,7 @@ path.beachState:hover {
 #cost_canvas {
   background: transparent;
   height: 370px;/*472*/
-  width: 80%;
+  width: 90%;
 /*
   width: 370px;
   height: 370px;
