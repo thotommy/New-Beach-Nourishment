@@ -5,12 +5,17 @@ path {
   transition: .6s fill;
 }
 
+/*Makes the SVG map hover and light up when on it*/
 path.beachState {
   fill:#009E66;
   transition: .6s fill;
 }
-path.beachState:hover {fill: #b3d9ff;
+
+path.beachState:hover {
+    fill: #b3d9ff;
 }
+
+
 /*The select tag for the Home Page*/
 #homeSel {
   width: 100%;
@@ -18,6 +23,12 @@ path.beachState:hover {fill: #b3d9ff;
   border: none;
   color: #7F7F7F;
   font-weight: bold;
+}
+
+/** page title **/
+.section-title{
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .facebook-logo {
@@ -29,15 +40,17 @@ path.beachState:hover {fill: #b3d9ff;
 }
 
 /*Map Canvas for the Google Map*/
-
 #map_canvas {
   display: block;
   height: 472px;/*472*/
   width: 80%;
 }
-
+/*Cost visualization graph*/
 #cost_canvas {
   background: transparent;
+  height: 370px;/*472*/
+  width: 80%;
+/*
   width: 370px;
   height: 370px;
   position: relative;
@@ -46,10 +59,14 @@ path.beachState:hover {fill: #b3d9ff;
   padding: 0;
   float: left;
   z-index: 100;
+  */
 }
-
+/*Volume canvas for google maps*/
 #volume_canvas {
   background: transparent;
+  height: 370px;/*472*/
+  width: 80%;
+/*
   width: 370px;
   height: 370px;
   position: relative;
@@ -59,10 +76,11 @@ path.beachState:hover {fill: #b3d9ff;
   padding: 0;
   float: right;
   z-index: 100;
+  */
 }
 
 
-/*Heat key*/
+/*Heat key for the results page*/
 .heat-img {
     background-color: transparent;
     position: relative;
@@ -115,10 +133,6 @@ path.beachState:hover {fill: #b3d9ff;
   top: -40px;
 }
 
-/*.space {
-  height: 10px;
-}*/
-
 .stats{
   margin: 0px;
   padding: 0px;
@@ -129,22 +143,15 @@ path.beachState:hover {fill: #b3d9ff;
 .table-header {
   font-weight: bold;
   text-align: left;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "san-serif";
 }
 
 .totals {
-  font: 12px "Times New Roman", Times, serif;
+  font: 12px "san-serif";
   text-align: right;
 }
 
-/** page title **/
-
-.section-title{
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-/*Select tag for results Page*/
+/*Select tag for results Page, visual, table*/
 #beaches {
   width:50%;
   padding: 1%;
@@ -155,7 +162,7 @@ path.beachState:hover {fill: #b3d9ff;
   float: center;
 }
 
-/*Select Tag for the Results Page*/
+/*Select Tag for the Results Page, visual, table*/
 #states {
   width:50%;
   padding: 1%;
@@ -167,7 +174,7 @@ path.beachState:hover {fill: #b3d9ff;
 
 }
 
-/*Select tag for the Visual page */
+/*Select tag for the Visual page, table */
 #perpage {
     width:50%;
     padding: 1%;
@@ -178,10 +185,7 @@ path.beachState:hover {fill: #b3d9ff;
     float: center;
 }
 
-/*.containervisual {
-    margin-left: 25%;
-    margin-right: 25%;
-}*/
+
 /*About page in Beach Nourishment*/
 
 .developer {

@@ -59,7 +59,7 @@
         for (var i = 0; i < data.getNumberOfRows(); i++) {
             for (var j = 0; j < data.getNumberOfColumns(); j++) {
                 data.setProperty(i, j, "style",
-                    "text-align: left; font-family: \"Times New Roman\", Times, serif;"
+                    "text-align: left; font-family: \"san-serif\";"
                 );
             }
         }
@@ -167,6 +167,25 @@
 <center>
     <h3>{{{beach}}}, {{{state}}}</h3>
 </center>
+
+<!--This is the links back to certain pages-->
+<table cols="3" style="border-spacing: 10px 5px;" width="75%" align="center">
+    <tr>
+        <td>
+            <a href="visual?state={{state}}&beach={{beach}}">Return</a> to the previous
+            page
+        </td>
+        <td>
+            <a href="oneState?state={{state}}">Return</a> to the State Map page
+        </td>
+        <td>
+            <a href=".">Return</a> to the Home page
+        </td>
+    </tr>
+</table>
+<!--End of the links back to certain pages-->
+<br /><br />
+
 <div class="row">
     <div class="col-sm-12">
         <div class="col-sm-6">
@@ -264,20 +283,3 @@
     </table>
 </div>
 <!--End of the beachtables table-->
-
-<!--This is the links back to certain pages-->
-<table cols="3" style="border-spacing: 10px 5px;" width="75%" align="center">
-    <tr>
-        <td>
-            <a href="visual?state={{state}}&beach={{beach}}">Return</a> to the previous
-            page
-        </td>
-        <td>
-            <a href="oneState?state={{state}}">Return</a> to the State Map page
-        </td>
-        <td>
-            <a href=".">Return</a> to the Home page
-        </td>
-    </tr>
-</table>
-<!--End of the links back to certain pages-->
