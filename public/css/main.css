@@ -52,33 +52,13 @@ path.beachState:hover {
   background: transparent;
   height: 370px;/*472*/
   width: 90%;
-/*
-  width: 370px;
-  height: 370px;
-  position: relative;
-  top: 15px;
-  left: 30px;
-  padding: 0;
-  float: left;
-  z-index: 100;
-  */
 }
+
 /*Volume canvas for google maps*/
 #volume_canvas {
   background: transparent;
   height: 370px;/*472*/
   width: 80%;
-/*
-  width: 370px;
-  height: 370px;
-  position: relative;
-  top: 15px;
-  left: 30px;
-  margin: auto;
-  padding: 0;
-  float: right;
-  z-index: 100;
-  */
 }
 
 
@@ -192,9 +172,6 @@ path.beachState:hover {
 
 .developer {
   display: table-cell;
-  /*margin-top: 15px;
-  width: 850px;
-  min-height: 140px;*/
   vertical-align: middle;
 }
 
@@ -209,4 +186,8 @@ path.beachState:hover {
   height: 120px;
   float: left;
   border-radius: 10px;
+}
+
+a:hover {
+  color: #ffffff;
 }

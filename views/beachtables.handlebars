@@ -16,9 +16,12 @@
      */
     var state = "{{state}}";
     var fullStateName = "{{fullStateName}}";
-
+    var beach = "{{beach}}"
     function loadResponse() {
-        var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
+        if (beach == "All_Beaches") {
+			beach = -1;
+		}
+        //var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var query = new google.visualization.Query(createDataUrl("Master"));
 
         var selectQuery = new google.visualization.Query(createDataUrl("Master"));

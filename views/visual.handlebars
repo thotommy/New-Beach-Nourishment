@@ -22,12 +22,10 @@
         var state = "{{state}}";
 		var beach = "{{beach}}";
 		if (beach == "All_Beaches") {
-			alert("Tripped");
 			beach = -1;
-			alert(beach);
 		}
         //var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
-        alert("beach is " + beach);
+        //alert("beach is " + beach);
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
