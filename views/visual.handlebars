@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <script type="text/javascript" src="javascript/states.js"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
@@ -17,15 +17,11 @@
      * loaded.
      */
     function createPageElements() {
-        //alert("state is " + "{{state}}");
-        //alert("beach is " + "{{beach}}");
         var state = "{{state}}";
 		var beach = "{{beach}}";
 		if (beach == "All_Beaches") {
 			beach = -1;
 		}
-        //var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
-        //alert("beach is " + beach);
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var totalsQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -55,7 +51,6 @@
      * @param response the response that is returned from the query
      */
     function createCostVisualization(response) {
-        //alert("In the createCostVisualization function");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                 response.getDetailedMessage());
@@ -80,7 +75,7 @@
         visualization.draw(data, {
             title: 'Cost',
             titleTextStyle: {
-                fontSize: 16,//16
+                fontSize: 16,
                 fontName: "san-serif"
             },
             legend: 'none',
@@ -100,7 +95,6 @@
      * @param response the response that is returned from the query
      */
     function createVolumeVisualization(response) {
-        //alert("In the createVolumeVisualization function");
         if (response.isError()) {
             alert("Error in query: " + response.getMessage() + " " +
                 response.getDetailedMessage());
@@ -144,10 +138,7 @@
      * @param response the response that is returned from the query
      */
     function getTotalsAndCreateSelect(response) {
-        //alert("What is the response it is " + response);
-        //alert("In the getTotalsAndCreateSelect function");
         var data = response.getDataTable();
-        //alert("the data is in getTotalsAndCreateSelect" + data);
         var beaches = new Array();
         var totals = new Object();
         totals.cost = 0;
@@ -171,17 +162,7 @@
                 option.text = beach;
                 option.value = "visual?state={{state}}&beach=" + beach;
                 select.add(option);
-                //alert("HII2");
-                /*if(select) {
-                   alert("Then it exists!");
-                } else {
-                    alert("Then nothing there bro");
-                }
-                select.add(option);
-
-                alert("HII3");*/
             }
-            //TODO RIGHT HERE!!!!!!!!!!!!!!!! ALl beaches total
             if (beach == '{{beach}}') {
                 totals.episodes++;
                 totals.cost += data.getValue(i, costColumn);
@@ -215,7 +196,6 @@
      * @param sortBy the means by which to sort the graph
      */
     function redrawVisualization(sortBy) {
-        //alert("In the redrawVisualization function");
         orderBy = sortBy;
         var volumeQuery = new google.visualization.Query(createDataUrl("Master"));
         var costQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -252,33 +232,24 @@
 </script>
 <center>
     <h2>{{{beach}}}, {{{state}}}</h2></center>
-
+<!--This is the start of the links of the the back to page-->
 <div class="row" align="center">
     <div class="col-sm-12">
-
         <div class="col-sm-6">
             <a href="oneState?state={{state}}">Return</a> to the state map page
         </div>
-
         <div class="col-sm-6">
             <a href=".">Return</a> to the Home page
-
         </div>
-
-        <!--This is the end of the two pages link-->
-
     </div>
 </div>
-
+<!--This is the end of the the back to page links-->
 <br />
 <br />
 <div class="row">
     <div class="col-sm-12">
         <div class="col-sm-6">
             <!--This is the two select elements for the cost and volume-->
-            <!--"window.open(
-                         this.options[this.selectedIndex].value,
-                         '_top');"-->
             <select id="perpage" onChange="if(this.value) window.location.href=this.options[this.selectedIndex].value, '_top' ">
                 <option value="visual?state={{state}}&beach={{beach}}">
                     Select another beach
@@ -364,16 +335,17 @@
 </div>
 <br /><br /><br />
 
-<!--<div >USED TO HAVE style="z-index: 10; position: relative; top: -30px;"</div>-->
 <center>
+    <!--Contains the link to go to the table page-->
     <div class="row">
         <div class="col-sm-10">
             <div class="col-sm-6">
                 <a href="beachtables?state={{state}}&beach={{beach}}">View</a> the
                 <b>table</b> representation of this graph
             </div>
+    <!--End of the link to go to table page-->
+            <!--sort by table-->
             <div class="col-sm-5">
-                <!--sort by table-->
                 <table cols="2">
                     <tr>
                         <td>
@@ -393,12 +365,13 @@
                         </form>
                     </tr>
                 </table>
-                <!--End of the sort table -->
             </div>
+            <!--End of the sort table -->
         </div>
     </div>
 </center>
 
+<!--Start of the two bar charts that will be displayed-->
 <center>
 <div class="row">
     <div class="col-md-12">
@@ -410,7 +383,8 @@
                 <div id="volume_canvas" style="z-index: 1;"></div>
             </div>
         </div>
-        <br />
+        <br/>
     </div>
 </div>
 </center>
+<!--End of the two bar charts that will be displayed-->

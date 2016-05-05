@@ -1,17 +1,23 @@
-/** 
+/**
  * The url of the master spreadsheet on Google docs used for getting data for
  * the website.
  */
-
 function createDownloadUrl(state) {
-    return "https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=" 
+    return "https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key="
            + stateKeys[state] + "&exportFormat=xls";
 }
 
+/**
+ * This function will create the Data URL for Beach Nourishment
+ */
 function createDataUrl(state) {
     return "https://docs.google.com/spreadsheet/tq?key=" + stateKeys[state];
 }
 
+/**
+ * This is a object that contains all the keys for the states in
+ * Beach Nourishment
+ */
 var stateKeys = {
     "Master" : "0Ai5L0L8AX-QAdExmRmNrY203UXZWVndzNlg4aFBILUE",
     //"Master" : "0Ai5L0L8AX-QAdEZaZkMxaGp6TmQwMERVS19VbHN5TlE",

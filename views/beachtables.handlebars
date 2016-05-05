@@ -1,27 +1,30 @@
-<!doctype html>
+
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="javascript/useful_function.js"></script>
 <script type="text/javascript" src="javascript/states.js"></script>
 
 <script type="text/javascript">
+    /**
+     * Loads the table packages from Google's API for visualization
+     */
     google.load('visualization', '1.0', {
         'packages': ['table']
     });
     google.setOnLoadCallback(loadResponse);
+
+    var state = "{{state}}";
+    var fullStateName = "{{fullStateName}}";
+    var beach = "{{beach}}";
 
     /**
      * The function that is called when the Google Visualization libraries are
      * loaded. This function builds the queries to construct the drop-down
      * menu and the table.
      */
-    var state = "{{state}}";
-    var fullStateName = "{{fullStateName}}";
-    var beach = "{{beach}}"
     function loadResponse() {
         if (beach == "All_Beaches") {
 			beach = -1;
 		}
-        //var beach = ("{{beach}}" == "All Beaches") ? -1 : "{{beach}}";
         var query = new google.visualization.Query(createDataUrl("Master"));
 
         var selectQuery = new google.visualization.Query(createDataUrl("Master"));
@@ -165,7 +168,6 @@
             numberWithCommas(totals.len);
         document.getElementById('totals').style.visibility = 'visible';
     }
-    //-->
 </script>
 <center>
     <h3>{{{beach}}}, {{{state}}}</h3>
@@ -189,12 +191,10 @@
 <!--End of the links back to certain pages-->
 <br /><br />
 
-
 <div class="row">
     <div class="col-sm-12">
         <div class="col-sm-6">
             <!--This is the two select elements for beach and state-->
-
             <select id="perpage" onChange="if(this.value) window.location.href=this.value, '_top'">
                 <option value="visual?state={{state}}?beach={{beach}}">
                     Select another beach
@@ -233,6 +233,7 @@
             </select>
             <!--End of the two selects-->
         </div>
+
         <center>
         <div class="col-sm-6">
             <!--Table info-->

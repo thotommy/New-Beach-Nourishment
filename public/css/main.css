@@ -15,9 +15,7 @@ path.beachState:hover {
     fill: #b3d9ff;
 }
 
-.nav navbar-nav li.active {
-  opacity: 1;
-}
+
 /*The select tag for the Home Page*/
 #homeSel {
   width: 100%;
@@ -33,13 +31,16 @@ path.beachState:hover {
   padding-bottom: 15px;
 }
 
+/**logo for the facebook page for PSDS*/
 .facebook-logo {
   float: right;
 }
 
+/**logo for WCU page*/
 .wcu-logo {
   float: right;
 }
+
 
 /*Map Canvas for the Google Map*/
 #map_canvas {
@@ -47,14 +48,14 @@ path.beachState:hover {
   height: 472px;/*472*/
   width: 80%;
 }
-/*Cost visualization graph*/
+/*Cost visualization bar graph for visual page*/
 #cost_canvas {
   background: transparent;
   height: 370px;/*472*/
   width: 90%;
 }
 
-/*Volume canvas for google maps*/
+/*Volume visualization bar graph for visual page*/
 #volume_canvas {
   background: transparent;
   height: 370px;/*472*/
@@ -105,7 +106,7 @@ path.beachState:hover {
 
 .max {
   position: relative;
-  top: -20px; /*-25*/
+  top: -20px; 
   left: 160px;
 }
 
@@ -114,20 +115,16 @@ path.beachState:hover {
   position: relative;
   top: -40px;
 }
+/**End of the heat key CSS elements*/
 
-.stats{
-  margin: 0px;
-  padding: 0px;
-  float: auto;
-  position: relative;
-}
-
+/**For the table of information in results page*/
 .table-header {
   font-weight: bold;
   text-align: left;
   font-family: "san-serif";
 }
 
+/**For the table of information in the results page*/
 .totals {
   font: 12px "san-serif";
   text-align: right;
@@ -191,3 +188,4 @@ path.beachState:hover {
 a:hover {
   color: #ffffff;
 }
+/**End of the about page in Beach Nourishment*/
